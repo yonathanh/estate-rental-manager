@@ -1,0 +1,219 @@
+/* style.css */
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+/*============== <Global> ==============*/
+h1, h2 {
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px red;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  font-family: 'Indie Flower', cursive;
+  border-radius: 10px;
+  animation: header 5s ease-in infinite alternate; }
+
+h2 {
+  font-size: 30px; }
+
+ul {
+  list-style: none; }
+
+body {
+  padding: 50px;
+  color: #fdeeee;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+body {
+  background: url("/images/toothless.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px; }
+
+/*============== <layout navBar> ============================================*/
+.profile-img {
+  max-width: 70px;
+  border-radius: 10px; }
+
+.dropdown-menu {
+  background-color: #d4b2b2; }
+
+.form-control {
+  color: white;
+  background-color: black; }
+
+.btn-dark {
+  color: #a59b9b;
+  border: solid 1px;
+  border-color: #4d4747;
+  background-color: #302b2b; }
+
+.btn-dark:hover {
+  color: #fff;
+  background-color: #4d0718; }
+
+#login-dp {
+  min-width: 250px;
+  padding: 14px 14px 0;
+  overflow: hidden;
+  background-color: rgba(95, 79, 79, 0.8); }
+
+#login-dp .help-block {
+  font-size: 12px; }
+
+#login-dp .bottom {
+  background-color: rgba(8, 5, 5, 0.8);
+  border-top: 1px solid #ddd;
+  clear: both;
+  padding: 14px; }
+
+#login-dp .social-buttons {
+  margin: 12px 0; }
+
+#login-dp .social-buttons a {
+  width: 100%; }
+
+#login-dp .form-group {
+  margin-bottom: 10px; }
+
+.btn-google {
+  color: #fff;
+  background-color: #9c0d31; }
+
+.btn-google:hover {
+  color: #fff;
+  background-color: #690820; }
+
+@media (max-width: 768px) {
+  #login-dp {
+    background-color: inherit;
+    color: #fff; }
+  #login-dp .bottom {
+    background-color: inherit;
+    border-top: 0 none; }
+  .navbar-form {
+    margin-left: 100px; } }
+
+/*============== <home> ============================================*/
+/*============== <header> ==============*/
+.main-header {
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px red;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  font-family: 'Indie Flower', cursive;
+  padding: 10px;
+  border-radius: 10px;
+  animation: header 5s ease-in infinite alternate; }
+
+.main-wrap {
+  position: relative; }
+
+.main-gif {
+  position: absolute;
+  width: 60px;
+  bottom: 65px;
+  left: 0;
+  animation: gifWalk 30s linear infinite; }
+
+@keyframes gifWalk {
+  0% {
+    transform: translateX(0) scaleX(-1);
+    opacity: 1; }
+  95% {
+    opacity: 0.8; }
+  100% {
+    transform: translateX(1040px) scaleX(-1);
+    opacity: 0; } }
+
+@keyframes header {
+  from {
+    color: white;
+    text-shadow: 0 2px 3px red; }
+  to {
+    color: red;
+    text-shadow: 0 2px 5px red; } }
+
+.jumbotron {
+  background: rgba(27, 59, 23, 0.3);
+  background-size: cover;
+  padding-bottom: 390px;
+  border-radius: 10px; }
+
+/*============== <movie results in index.hbs> ==============*/
+#results img, #movie img {
+  width: 80%; }
+
+.well {
+  background-color: #212420;
+  height: 435px;
+  position: relative; }
+  .well:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 100;
+    transition: all 2s ease-in;
+    border-color: #771212;
+    box-shadow: 0 0 5px #a80f0f;
+    background: rgba(47, 117, 19, 0.3); }
+
+@media (min-width: 960px) {
+  #results .col-md-2 .img {
+    height: 260px; }
+  #results .col-md-3 .img {
+    height: 240px; } }
+
+/*============== <auth> ==============*/
+form {
+  max-width: 320px; }
+
+.location-center {
+  display: flex;
+  justify-content: center; }
+
+/*============== <moviesAll> ==============*/
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+#movie {
+  width: 70%; }
+
+.select-links {
+  margin-bottom: 5px; }
+
+.inline-block {
+  display: inline-block;
+  position: absolute;
+  bottom: 0px; }
+  .inline-block.right {
+    right: 70px; }
+  .inline-block.left {
+    left: 80px;
+    bottom: 14px; }
+
+#btn-add {
+  color: #1f1818;
+  background: none;
+  border: none;
+  padding: 0; }
+
+#btn-add:hover {
+  border-radius: 5px;
+  background: #b9acac; }
+
+/*============== <editMovie.hbs> ==============*/
+.input-pruduct-name {
+  border-radius: 5px;
+  background-color: black; }
+
+/*============== <about> ============================================*/
+/*============== <header> ==============*/
+/*============== <section 1> ==============*/
+/*============== <section 2> ==============*/
+/*============== <footer> ==============*/
+/*============== <gallerry> =======================================*/
+/*============== <header> ==============*/
+/*============== <section 1> ==============*/
+/*============== <section 2> ==============*/
+/*============== <footer> ==============*/
+
+/*# sourceMappingURL=style.css.map */

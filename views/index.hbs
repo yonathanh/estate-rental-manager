@@ -1,0 +1,80 @@
+{{!-- <h1>{{title}}</h1>
+<p>Welcome to {{title}}</p> --}}
+
+
+
+        {{!-- <div class="main-wrap">
+          <img class="main-gif" src="/images/skoll.gif" alt="main-gif">
+        <h1 class="main-header">Welcome To Movies Are My LIfe App</h1> --}}
+
+    <!-- JUMBOTRON -->
+    <div class="jumbotron text-center">
+      <div class="container">
+        <div class="main-wrap">
+          <img class="main-gif" src="/images/skoll.gif" alt="main-gif">
+        <h1 class="main-header">Welcome To I Live In A Movie App</h1>
+        </div>
+
+{{!-- <h1>{{movies}}</h1> --}}
+
+ {{#each movies}}
+ <div class="col-md-3">
+   <div id="frame" class="well text-center">
+   <img id="movie" src="{{this.Poster}}"> 
+    <h5>{{this.Title}} (year{{this.Year}})</h5>
+    <a  class="btn btn-dark" href="http://imdb.com/title/{{this.imdbID}}" target="_blank" >Movie Details</a>
+    <li class="dropdown btn btn-dark">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add To<span class="caret"></span></a>
+      <ul class="dropdown-menu">
+
+
+        <form action="/movies/addImdb" method="POST">
+
+        <input type="hidden" value = "{{this.Title}}"  name="movieData">
+        <input type="hidden" value = "{{this.imdbID}}" name="movieData">
+        <input type="hidden" value = "{{this.Poster}}" name="movieData">
+        <input type="hidden" value = "{{this.Year}}"   name="movieData">
+        <input type="hidden" value = "f"               name="movieData">
+
+        <button type="submit" id="btn-add">Favorites</button>
+        </form>
+
+        <form action="/movies/addImdb" method="POST">
+
+        <input type="hidden" value = "{{this.Title}}"  name="movieData">
+        <input type="hidden" value = "{{this.imdbID}}" name="movieData">
+        <input type="hidden" value = "{{this.Poster}}" name="movieData">
+        <input type="hidden" value = "{{this.Year}}"   name="movieData">
+        <input type="hidden" value = "m"               name="movieData">
+
+        <button type="submit" id="btn-add">Must Watch</button>
+        </form>
+
+        <form action="/movies/addImdb" method="POST">
+
+        <input type="hidden" value = "{{this.Title}}"  name="movieData">
+        <input type="hidden" value = "{{this.imdbID}}" name="movieData">
+        <input type="hidden" value = "{{this.Poster}}" name="movieData">
+        <input type="hidden" value = "{{this.Year}}"   name="movieData">
+        <input type="hidden" value = "e"               name="movieData">
+
+        <button type="submit" id="btn-add">Easy Sunday</button>
+        </form>
+
+        
+        {{!-- <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},f')" type="submit" id="btn-add">Favorites</button>
+        <li role="separator" class="divider"></li>
+        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},m')" type="submit" id="btn-add">Must Watch</button>
+        <li role="separator" class="divider"></li>
+        <button onclick="addMovie('{{this.Title}},{{this.imdbID}},{{this.Poster}},{{this.Year}},e')" type="submit" id="btn-add">Easy Sunday</button> --}}
+
+      </ul>
+    </li>
+   </div>
+ </div>
+ {{/each}}
+
+
+
+
+

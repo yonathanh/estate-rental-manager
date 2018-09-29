@@ -1,0 +1,176 @@
+
+
+
+
+
+<!-- ==================  Scripts  ===================== -->
+<script> // need to find better locations for this function (main js file?)
+    function sginIn() {
+
+        let username = document.querySelector(".input-price-of-product").value;
+        let password = document.querySelector(".input-price-of-product").value;
+        console.log("-=-=-=-========================", username);
+        console.log("-=-=-=-========================", password);
+          axios.post('/movies/addImdb', { movieData })
+          .then((movieData)=>{
+
+            console.log("@#!#$!@#$!@#!#!~@#~!@#",movieData);
+  //need to add promise here! so I can redirect syncroneslly to favoriets page or must watch page
+           console.log('added Success!');
+           location.href='/movies/moviesAll';
+           //window.location.replace("http://localhost:3000/movies/moviesAll");
+          });
+    }
+</script>
+<!-- ================== End Scripts  ===================== -->
+
+
+
+<!-- Layout -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <!-- Bootstrap -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
+    <!-- scripts for axios and jquery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+ <!-- NavBar-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ><a href="/cinema">Cinema Links<span class="sr-only">(current)</span></a></li>
+        <li><a href="/movies/addMovie">Add Movie</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="float-right"><a href="/login">Sign in</a></li>
+              <li role="separator" class="divider"></li>
+               <form action="/default" method="POST">
+               <div  class="form-group">
+               <input type="text" class="form-control" name="defaultSearch" placeholder="Default Search" >
+               </div>
+              <button id="btn-add" type="submit">Submit</button>
+              </form>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">More Options</a></li>
+            </ul>
+        </li>
+      </ul>
+      <form  class="navbar-form navbar-left" action="/search" method="POST">
+        <div  class="form-group">
+          <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search Movie" >
+        </div>
+        <!-- onClick="location.href='/'" -->
+        <button id="searchForm" type="submit"  class="btn btn-dark">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Options<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/movies/moviesAll">Show all Movies</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/movies/favorites">My Favorites</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/movies/mustWatch">Must Watch</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/movies/easySunday">Easy Sunday</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/cinema/myCinema">My Cinema</a></li>
+            </ul>
+          </li>
+        
+            {{#if user}}
+            <li class="float-right"><a href="/logout">Logout</a> </li>
+            <li>
+              <a href="/profile/{{user._id}}">
+                <button class="btn-dark float-right">{{user.username}}</button>
+              </a>
+            </li>
+              {{#if user.imgPath}}
+              <img class="float-right profile-img" src="{{user.imgPath}}" alt="">
+              {{else}}
+              <img class="float-right profile-img" src="{{user.image}}" alt="">
+              {{/if}}
+            {{else}}
+            <li class="float-right"><a href="/signup">Sign Up</a> </li>
+            {{/if}}
+
+        <!-- Login Dropdown -->
+        {{#unless user}}
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Sign in</b> <span class="caret"></span></a>
+			  <ul id="login-dp" class="dropdown-menu">
+				<li>
+					 <div class="row">
+							<div class="col-md-12">
+								Login via
+								<div class="social-buttons">
+									<a href="/auth/google" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
+								</div>
+                  <p>or</p>
+                  <div class="location-center">
+                    <form action="/login" method="POST" id="form">
+
+                      <label for="username">Username</label>
+                      <input class="form-control" type="text" name="username" placeholder="User Name">
+
+                      <label for="password">Password</label>
+                      <input class="form-control" type="password" name="password" placeholder="Password">
+
+                      {{#if message }}
+                        <div class="error-message">{{ message }}</div>
+                      {{/if}}
+                      <br>
+                      <button class="btn btn-dark" >Sign in</button>
+                    </form>
+                  </div>
+							 </div>
+							<div class="bottom text-center">
+							 <a href="/signup"><b>Sign Up</b></a>
+							</div>
+					 </div>
+				</li>
+			</ul>
+      {{/unless}}
+      </li><!-- End Login Dropdown -->
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  <body>
+
+    {{{body}}}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/script.js"></script>
+  </body>
+
+</html>
