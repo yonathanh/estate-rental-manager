@@ -1,0 +1,21 @@
+.app {
+  display: flex;
+}
+
+.main {
+  flex-basis: 60%;
+}
+
+.map {
+  flex-grow: 1;
+  height: 100vh;
+  width: 50vw;
+  top: 0;
+  position: sticky;
+}
+
+.Properies {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}

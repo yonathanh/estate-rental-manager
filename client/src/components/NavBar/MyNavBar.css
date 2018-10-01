@@ -1,0 +1,22 @@
+/* ======================= Global=================== */
+
+nav {
+  background-color: rgba(58, 34, 45, 0.9);
+}
+
+li {
+  list-style-type: none;
+}
+
+.link,
+#navbarDropdown {
+  color: #4294b4;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.link:hover {
+  color: #82cce9;
+  text-decoration: none;
+  background-color: transparent;
+}

@@ -1,0 +1,14 @@
+.marker {
+  width: 48px;
+  height: 20px;
+  background-color: rgb(202, 81, 81);
+  border: 2px solid rgb(83, 6, 6);
+  border-radius: 4px;
+  text-align: center;
+  padding: 4px 0;
+}
+
+.selected {
+  background-color: yellow;
+  border-color: black;
+}

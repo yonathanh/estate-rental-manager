@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const ensureLogin = require("connect-ensure-login");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const uploadCloud = require("../config/cloudinary.js");
 const nodemailer = require("nodemailer");
@@ -13,9 +12,9 @@ const bcryptSalt = 10;
 const User = require("../models/User");
 
 /* GET signup  page */
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
+// router.get("/signup", (req, res, next) => {
+//   res.render("auth/signup");
+// });
 
 //-------- sign up function
 
@@ -37,85 +36,114 @@ router.post("/signup", (req, res, next) => {
     userObject.password === "" ||
     userObject.email === ""
   ) {
-    res.render("auth/signup", {
-      errorMessage: "Indicate a username password and eMail to sign up"
-    });
+    res
+      .status(400)
+      .json({ message: "Provide username password and eMail to sign up" });
     return;
   }
 
   //--------- check  if the indicated username is already defined
-  User.findOne({ username: userObject.username })
-    .then(user => {
-      if (user !== null) {
-        res.render("auth/signup", {
-          errorMessage: "The username already exists"
-        });
+  User.findOne({ username: userObject.username }).then(user => {
+    if (user !== null) {
+      res.status(400).json({
+        errorMessage: "The username already exists"
+      });
+      return;
+    }
+
+    // --------  using nodemailer to send and get eMails
+    // let transporter = nodemailer.createTransport({
+    //   service: 'Gmail',
+    //   auth: {
+    //     user: process.env.appsGmailAccount,
+    //     pass: process.env.gmailPassword
+    //   }
+    // });
+
+    // transporter.sendMail({
+    //   from: '"My Awesome Project 👻" <myawesome@project.com>',
+    //   to: email,
+    //   text: message,
+    //   html: `<b>${message}</b>`
+
+    // });
+
+    //------------------- continue after validations
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(userObject.password, salt);
+
+    userObject.password = hashPass;
+
+    const newUser = new User(userObject);
+
+    newUser.save(err => {
+      if (err) {
+        res
+          .status(400)
+          .json({ message: "Saving user to database went wrong." });
         return;
       }
 
-      // --------  using nodemailer to send and get eMails
-      // let transporter = nodemailer.createTransport({
-      //   service: 'Gmail',
-      //   auth: {
-      //     user: process.env.appsGmailAccount,
-      //     pass: process.env.gmailPassword
-      //   }
-      // });
+      // Automatically log in user after sign up
+      // .login() here is actually predefined passport method
+      req.login(newUser, err => {
+        if (err) {
+          res.status(500).json({ message: "Login after signup went bad." });
+          return;
+        }
 
-      // transporter.sendMail({
-      //   from: '"My Awesome Project 👻" <myawesome@project.com>',
-      //   to: email,
-      //   text: message,
-      //   html: `<b>${message}</b>`
-
-      // });
-
-      //------------------- continue after validations
-      const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashPass = bcrypt.hashSync(userObject.password, salt);
-
-      userObject.password = hashPass;
-
-      const newUser = User(userObject);
-
-      newUser.save().then(user => {
-        // login after signup
-        req.login(user, function(err) {
-          if (err) {
-            return next(err);
-          }
-          return res.redirect("/");
-        });
+        // Send the user's information to the frontend
+        // We can use also: res.status(200).json(req.user);
+        res.status(200).json(newUser);
       });
-    })
-    .catch(error => {
-      next(error);
     });
+  });
 }); //--------- End sign up function
 
-/* GET login  page */
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { message: req.flash("error") });
+//---------  login
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, theUser, failureDetails) => {
+    if (err) {
+      res
+        .status(500)
+        .json({ message: "Something went wrong authenticating user" });
+      return;
+    }
+
+    if (!theUser) {
+      // "failureDetails" contains the error messages
+      // from our logic in "LocalStrategy" { message: '...' }.
+      res.status(401).json(failureDetails);
+      return;
+    }
+
+    // save user in session
+    req.login(theUser, err => {
+      if (err) {
+        res.status(500).json({ message: "Session save went bad." });
+        return;
+      }
+
+      // We are now logged in (that's why we can also send req.user)
+      res.status(200).json(theUser);
+    });
+  })(req, res, next);
 });
 
-//-------- Log In function
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    successFlash: true,
-    failureRedirect: "/login",
-    failureFlash: true,
-    passReqToCallback: true
-  })
-);
-
 //---------  logout
-router.get("/logout", (req, res, next) => {
-  req.session.destroy(err => {
-    // cannot access session here
-    res.redirect("/login");
-  });
+router.post("/logout", (req, res, next) => {
+  // req.logout() is defined by passport
+  req.logout();
+  res.status(200).json({ message: "Log out success!" });
+});
+
+router.get("/loggedin", (req, res, next) => {
+  // req.isAuthenticated() is defined by passport
+  if (req.isAuthenticated()) {
+    res.status(200).json(req.user);
+    return;
+  }
+  res.status(403).json({ message: "Unauthorized" });
 });
 
 //-------- GOOGLE Log In routs
@@ -173,7 +201,7 @@ passport.use(
         });
     }
   )
-); //--------- End sing up function
+); //--------- End GOOGLE Log In function
 
 // must use form in html for post!
 //================================================
@@ -202,7 +230,7 @@ router.post(
     //   password: String,
     //   email:    String,
     //   googleID: String,
-    //   imageUrl:    String,
+    //   imageUrl: String,
     //   favorites: Array,
     //   mustWatch: Array,
     //   easySunday: Array

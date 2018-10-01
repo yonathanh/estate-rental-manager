@@ -9,7 +9,9 @@ const userSchema = new Schema(
     googleID: String,
     imageUrl: String,
     imgName: String,
-    imgPath: String
+    imgPath: String,
+    rol: String,
+    Properties: Array
   },
   {
     timestamps: {
