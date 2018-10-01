@@ -18,12 +18,30 @@ const User = require("../models/User");
 
 //-------- sign up function
 
+// username: String,
+// password: String,
+// email: String,
+// name: String,
+// phone: Number,
+// address: String,
+// googleID: String,
+// imageUrl: String,
+// imgName: String,
+// imgPath: String,
+// contracts: Array,
+// Properties: Array
+
 router.post("/signup", (req, res, next) => {
   const userObject = {
     username: req.body.username,
     password: req.body.password,
+    name: req.body.name,
     email: req.body.email,
-    imageUrl: req.body.imageUrl
+    phone: req.body.phone,
+    address: req.body.address,
+    imageUrl: req.body.imageUrl,
+    contracts: req.body.contracts,
+    Properties: req.body.Properties
   };
   if (req.file) {
     userObject.imgName = req.file.originalname;
@@ -226,14 +244,18 @@ router.post(
 
     //----------------------------------- user example
     // const userSchema = new Schema({
-    //   username: String,
-    //   password: String,
-    //   email:    String,
-    //   googleID: String,
-    //   imageUrl: String,
-    //   favorites: Array,
-    //   mustWatch: Array,
-    //   easySunday: Array
+    // username: String,
+    // password: String,
+    // email: String,
+    // name: String,
+    // phone: Number,
+    // address: String,
+    // googleID: String,
+    // imageUrl: String,
+    // imgName: String,
+    // imgPath: String,
+    // contracts: Array,
+    // Properties: Array
 
     //need to figure out how to not chnage password if leave empty and change with hash if change
 

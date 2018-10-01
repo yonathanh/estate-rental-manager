@@ -4,8 +4,15 @@ const Schema = mongoose.Schema;
 const propertySchema = new Schema(
   {
     manager: String,
+    tenants: Array,
     address: String,
-    imageSRC: String,
+    propertyDetails: String,
+    imageUrl: String,
+    estimatePrice: Number,
+    lat: Number,
+    lng: Number,
+    contractDetails: Array,
+    leaseID: Array,
     imgName: String,
     imgPath: String
   },

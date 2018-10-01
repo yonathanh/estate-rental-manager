@@ -71,7 +71,7 @@ class Login extends Component {
                   <button
                     type="submit"
                     value="Signup"
-                    className="btn btn-outline-info my-2 my-sm-0"
+                    className="btn btn-info my-2 my-sm-2"
                   >
                     Login
                   </button>

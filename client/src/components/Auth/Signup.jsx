@@ -5,21 +5,44 @@ import { Link } from "react-router-dom";
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = {
+      username: "",
+      password: "",
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      imageUrl: "",
+      imgPath: ""
+    };
     this.service = new AuthService();
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const username = this.state.username;
-    const password = this.state.password;
+    const userObjct = {
+      username: this.state.username,
+      password: this.state.password,
+      name: this.state.name,
+      email: this.state.email,
+      phone: this.state.phone,
+      address: this.state.address,
+      imageUrl: this.state.imageUrl,
+      imgPath: this.state.imgPath
+    };
 
     this.service
-      .signup(username, password)
+      .signup(userObjct)
       .then(theUserObject => {
         this.setState({
           username: "",
-          password: ""
+          password: "",
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          imageUrl: "",
+          imgPath: ""
         });
         this.props.setTheUserInTheAppComponent(theUserObject);
       })
@@ -27,14 +50,13 @@ class Signup extends Component {
   };
 
   handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     return (
       <div>
-        {/* <!-- Login  --> */}
+        {/* <!-- Singup  --> */}
         <form onSubmit={this.handleFormSubmit} />
         <h1>Sign Up</h1> <span className="caret" />
         <div className="row">
@@ -43,7 +65,9 @@ class Signup extends Component {
             <div className="col-md-12">
               <div className="location-center">
                 <form id="signup-form" onSubmit={this.handleFormSubmit}>
-                  <label htmlFor="username">Username</label>
+                  <label className="my-sm-0" htmlFor="username">
+                    Username
+                  </label>
                   <input
                     className="form-control"
                     type="text"
@@ -52,7 +76,9 @@ class Signup extends Component {
                     onChange={e => this.handleChange(e)}
                     placeholder="User Name"
                   />
-                  <label htmlFor="password">Password</label>
+                  <label className="my-sm-0" htmlFor="password">
+                    Password
+                  </label>
                   <input
                     className="form-control"
                     type="password"
@@ -61,23 +87,83 @@ class Signup extends Component {
                     onChange={e => this.handleChange(e)}
                     placeholder="Password"
                   />
+                  <label className="my-sm-0" htmlFor="name">
+                    name
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="name"
+                    value={this.state.name}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="Name"
+                  />
+                  <label className="my-sm-0" htmlFor="email">
+                    email
+                  </label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="email"
+                  />
+                  <label className="my-sm-0" htmlFor="phone">
+                    phone
+                  </label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    name="phone"
+                    value={this.state.phone}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="phone"
+                  />
+                  <label className="my-sm-0" htmlFor="address">
+                    address
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="address"
+                    value={this.state.address}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="address"
+                  />
+                  <label className="my-sm-0" htmlFor="imageUrl">
+                    imageUrl
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="imageUrl"
+                    value={this.state.imageUrl}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="imageUrl"
+                  />
+                  <label
+                    className="my-sm-0"
+                    className="my-sm-0"
+                    htmlFor="imgPath"
+                  >
+                    imgPath
+                  </label>
+                  <input
+                    className="form-control"
+                    type="file"
+                    name="imgPath"
+                    value={this.state.imgPath}
+                    onChange={e => this.handleChange(e)}
+                    placeholder="imgPath"
+                  />
                   <button
                     type="submit"
                     value="Signup"
-                    className="btn btn-outline-info my-2 my-sm-0"
+                    className="btn btn-info my-2 my-sm-2"
                   >
                     Signup
                   </button>
-                  <p>or</p>
-                  Login via
-                  <div className="social-buttons">
-                    <a
-                      href="/auth/google"
-                      className="btn btn-outline-danger my-2 my-sm-0"
-                    >
-                      <i className="fa fa-google" /> Google
-                    </a>
-                  </div>
                 </form>
               </div>
               <p>
@@ -87,7 +173,7 @@ class Signup extends Component {
             </div>
           </div>
         </div>
-        {/* End Login  */}
+        {/* End Signup  */}
       </div>
     );
   }

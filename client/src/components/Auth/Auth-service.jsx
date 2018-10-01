@@ -11,9 +11,9 @@ class AuthService {
     this.service = service;
   }
 
-  signup = (username, password) => {
+  signup = userObject => {
     return this.service
-      .post("/signup", { username, password })
+      .post("/signup", userObject)
       .then(response => response.data);
   };
 

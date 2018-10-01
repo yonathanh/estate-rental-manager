@@ -4,7 +4,17 @@ const Schema = mongoose.Schema;
 const leaseSchema = new Schema(
   {
     manager: String,
-    address: String,
+    tenant: String,
+    price: String,
+    propertyID: String,
+    paymentMathed: Object,
+    amenities: Array,
+    downPayment: Number,
+    fees: Number,
+    additinalCharges: Number,
+    dueDate: Date,
+    signature: String,
+    status: { type: String, default: "pending" },
     imageSRC: String,
     imgName: String,
     imgPath: String

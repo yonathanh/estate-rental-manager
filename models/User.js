@@ -5,12 +5,15 @@ const userSchema = new Schema(
   {
     username: String,
     password: String,
+    name: String,
     email: String,
+    phone: Number,
+    address: String,
     googleID: String,
     imageUrl: String,
     imgName: String,
     imgPath: String,
-    rol: String,
+    contracts: Array,
     Properties: Array
   },
   {

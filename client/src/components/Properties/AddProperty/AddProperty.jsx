@@ -19,27 +19,8 @@ class AddProperty extends Component {
   // "lat": 48.885312,
   // "lng": 2.341225
 
-  nameFieldChange = theEventObject => {
-    this.setState({ nameField: theEventObject.target.value });
-  };
-
-  imageFieldChange = theEventObject => {
-    this.setState({ imageField: theEventObject.target.value });
-  };
-
-  priceFieldhange = theEventObject => {
-    this.setState({ priceField: theEventObject.target.value });
-  };
-  priceCurrencyField = theEventObject => {
-    this.setState({ priceCurrencyField: theEventObject.target.value });
-  };
-
-  latFieldChange = theEventObject => {
-    this.setState({ latField: theEventObject.target.value });
-  };
-
-  lngFieldChange = theEventObject => {
-    this.setState({ lngField: theEventObject.target.value });
+  fieldChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
@@ -49,9 +30,10 @@ class AddProperty extends Component {
           <p className="control has-icons-left has-icons-right">
             <label>Name</label>
             <input
+              name="nameField"
               className="input"
               type="text"
-              onChange={e => this.nameFieldChange(e)}
+              onChange={e => this.fieldChange(e)}
               value={this.state.nameField}
               placeholder="Name"
             />
@@ -67,9 +49,10 @@ class AddProperty extends Component {
           <p className="control has-icons-left">
             <label>ImageUrl</label>
             <input
+              name="imageField"
               className="input"
               type="text"
-              onChange={e => this.imageFieldChange(e)}
+              onChange={e => this.fieldChange(e)}
               value={this.state.imageField}
               placeholder="ImageUrl"
             />
@@ -82,9 +65,10 @@ class AddProperty extends Component {
           <p className="control has-icons-left">
             <label>Price</label>
             <input
+              name="priceField"
               className="input"
               type="number"
-              onChange={e => this.priceFieldhange(e)}
+              onChange={e => this.fieldChange(e)}
               value={this.state.priceField}
               placeholder="567"
             />
@@ -97,9 +81,10 @@ class AddProperty extends Component {
           <p className="control has-icons-left">
             <label>priceCurrency</label>
             <input
+              name="priceCurrencyField"
               className="input"
-              type="number"
-              onChange={e => this.priceCurrencyFieldChange(e)}
+              type="text"
+              onChange={e => this.fieldChange(e)}
               value={this.state.priceCurrencyField}
               placeholder="$"
             />
@@ -112,9 +97,10 @@ class AddProperty extends Component {
           <p className="control has-icons-left">
             <label>lat</label>
             <input
+              name="latField"
               className="input"
               type="number"
-              onChange={e => this.latFieldChange(e)}
+              onChange={e => this.fieldChange(e)}
               value={this.state.latField}
               placeholder="40.7128"
             />
@@ -127,9 +113,10 @@ class AddProperty extends Component {
           <p className="control has-icons-left">
             <label>lngFieldChange</label>
             <input
+              name="lngField"
               className="input"
               type="number"
-              onChange={e => this.lngFieldChange(e)}
+              onChange={e => this.fieldChange(e)}
               value={this.state.lngField}
               placeholder="74.0060"
             />
