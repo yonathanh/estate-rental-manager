@@ -6,7 +6,7 @@ const propertySchema = new Schema(
     manager: String,
     tenants: Array,
     address: String,
-    propertyDetails: String,
+    propertyDetails: Object,
     imageUrl: String,
     estimatePrice: Number,
     lat: Number,

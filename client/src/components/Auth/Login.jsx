@@ -28,6 +28,7 @@ class Login extends Component {
           theUser: response.username
         });
         this.props.setTheUserInTheAppComponent(response);
+        this.props.history.push("/");
       })
       .catch(error => console.log(error));
   };

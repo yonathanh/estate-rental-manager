@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthService from "../Auth/Auth-service";
-import Login from "../Auth/Login";
+//import Login from "../Auth/Login";
 import "./MyNavBar.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -53,15 +53,13 @@ class MyNavBar extends Component {
                 </Link>
               </li>
             </div>
-            {!this.state.loggedInUser && (
-              <div className="nav-item">
-                <li className="nav-link navbar-brand">
-                  <Link className="link" to="/login">
-                    Login
-                  </Link>
-                </li>
-              </div>
-            )}
+            <div className="nav-item">
+              <li className="nav-link navbar-brand">
+                <Link className="link" to="/Properties">
+                  Properties
+                </Link>
+              </li>
+            </div>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -89,15 +87,8 @@ class MyNavBar extends Component {
             </li>
             <li className="nav-item" />
           </ul>
-          <div className="nav-item">
-            <li className="nav-link navbar-brand">
-              <Link className="link" to="/Properties">
-                Properties
-              </Link>
-            </li>
-          </div>
-          {/* <!-- Login Dropdown --> */}
 
+          {/* <!-- Login Dropdown --> */}
           {!this.state.loggedInUser && (
             <li className="nav-item dropdown">
               <a
@@ -161,10 +152,23 @@ class MyNavBar extends Component {
               Search
             </button>
           </form>
+          {!this.state.loggedInUser && (
+            <div className="nav-item">
+              <li className="nav-link navbar-brand">
+                <Link className="btn btn-outline-info my-2 my-sm-0" to="/login">
+                  Login
+                </Link>
+              </li>
+            </div>
+          )}
           {this.state.loggedInUser && (
             <div className="nav-item">
               <li className="nav-link navbar-brand">
-                <Link to="/projects" style={{ textDecoration: "none" }}>
+                <Link
+                  className="user-profile btn-sm btn-outline-info"
+                  to="/projects"
+                  style={{ textDecoration: "none" }}
+                >
                   {this.state.loggedInUser.username}
                 </Link>
                 <button

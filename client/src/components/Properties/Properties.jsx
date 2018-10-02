@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Property from "./Property/Property";
 import Marker from "./Marker/Marker";
 import AddProperty from "./AddProperty/AddProperty";
 
-import properties from "../../properties.json";
+//import properties from "../../properties.json";
 import GoogleMapsReact from "google-map-react";
 
 import "./Properties.css";
@@ -12,11 +13,29 @@ class Properties extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      properties: properties,
-      searchedProperties: properties,
+      listOfProperties: [],
+      searchedProperties: [],
       selectedProperty: null,
       toggleAddProperty: false
     };
+  }
+
+  getAllProperties = () => {
+    axios
+      .get(`http://localhost:5000/api/properties`)
+      .then(responseFromApi => {
+        this.setState({
+          listOfProperties: responseFromApi.data,
+          searchedProperties: responseFromApi.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  componentDidMount() {
+    this.getAllProperties();
   }
 
   toggleAddProperty = () => {
@@ -31,6 +50,7 @@ class Properties extends Component {
           Property={oneProperty}
           selectProperty={this.selectProperty}
           deleteClickHandler={this.deleteProperty}
+          detailsClickHandler={this.PropertyDetails}
         />
       );
     });
@@ -57,11 +77,11 @@ class Properties extends Component {
   };
 
   handleSearch = theEventObject => {
-    let tempProperties = [...this.state.properties];
+    let tempProperties = [...this.state.listOfProperties];
     this.setState({
       searchField: theEventObject.target.value,
       searchedProperties: tempProperties.filter(oneProperty =>
-        new RegExp(theEventObject.target.value, "i").exec(oneProperty.name)
+        new RegExp(theEventObject.target.value, "i").exec(oneProperty.address)
       )
     });
   };
@@ -74,7 +94,7 @@ class Properties extends Component {
     e.preventDefault();
 
     const newProperty = {
-      name: newThingToAdd.nameField,
+      address: newThingToAdd.addressField,
       imageUrl: newThingToAdd.imageField,
       price: newThingToAdd.priceField,
       priceCurrency: newThingToAdd.priceCurrencyField,
@@ -82,9 +102,9 @@ class Properties extends Component {
       lng: newThingToAdd.lngField
     };
 
-    const allTheProperties = [...this.state.properties];
-    // const allTheproperties = this.state.properties.slice()
-    // either of these works, they each simply make a duplicate of this.state.properties
+    const allTheProperties = [...this.state.listOfProperties];
+    // const allTheProperties = this.state.listOfProperties.slice()
+    // either of these works, they each simply make a duplicate of this.state.listOfProperties
 
     allTheProperties.unshift(newProperty);
 
@@ -95,12 +115,26 @@ class Properties extends Component {
     this.togglePropertyForm();
   };
 
-  deleteProperty = whichPropertyToDelete => {
-    const tempProperties = [...this.state.properties];
-    tempProperties.splice(whichPropertyToDelete, 1);
+  PropertyDetails = propertyId => {
+    console.log("-=-=-=-=-=-=-==-=-=", propertyId);
+  };
+
+  deleteProperty = propertyId => {
+    const tempProperties = [...this.state.listOfProperties];
+    // ========= I dont want to delete for now, uncomment when want to reactivate
+    // axios
+    //   .delete(`http://localhost:5000/api/properties/${propertyId}`)
+    //   .then(responseFromApi => {
+    //     this.props.history.push("/properties");
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+    tempProperties.splice(this.props, 1);
 
     this.setState({
-      properties: tempProperties,
+      listOfProperties: tempProperties,
       searchedProperties: tempProperties
     });
   };

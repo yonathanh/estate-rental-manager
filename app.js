@@ -1,4 +1,4 @@
-require("dotenv").config(); // whats this?
+require("dotenv").config();
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -111,17 +111,20 @@ passport.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-// end login passport
+// ====== end login passport
+
+//========= make use of public in packend side
+const favicon = require("serve-favicon");
+app.use(express.static(path.join(__dirname, "public")));
+app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // ================= Not need for react
 
-//const favicon = require("serve-favicon");
 //const hbs = require("hbs");
 // app.set("views", path.join(__dirname, "views"));
 // app.set("view engine", "hbs");
-// app.use(express.static(path.join(__dirname, "public")));
-// app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
+//======== used for saving user in the views
 // to use the user logged in, information in every page
 // app.use(function(req, res, next) {
 //   res.locals.user = req.user;
@@ -131,20 +134,25 @@ app.use(passport.session());
 
 //------------------  All Routs
 
-//--------- Api rout
-// const apiRoute = require("./routes/api");
-// app.use("/api", apiRoute);
-
+//======================  Api rout
 //--------  login routs
 const authRoutes = require("./routes/auth-routes");
-app.use("/", authRoutes);
+app.use("/api", authRoutes);
 
 //--------  Main rout
-const index = require("./routes/index");
-app.use("/", index);
+const index = require("./routes/index-routes");
+app.use("/api", index);
 
 //--------- user rout
-const user = require("./routes/user");
-app.use("/", user);
+const user = require("./routes/user-routes");
+app.use("/api", user);
+
+//--------- user property
+const property = require("./routes/property-routes");
+app.use("/api", property);
+
+//--------- user lease
+const lease = require("./routes/lease-routes");
+app.use("/api", lease);
 
 module.exports = app;

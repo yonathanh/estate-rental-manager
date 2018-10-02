@@ -45,6 +45,7 @@ class Signup extends Component {
           imgPath: ""
         });
         this.props.setTheUserInTheAppComponent(theUserObject);
+        this.props.history.push("/");
       })
       .catch(error => console.log(error));
   };
@@ -142,11 +143,7 @@ class Signup extends Component {
                     onChange={e => this.handleChange(e)}
                     placeholder="imageUrl"
                   />
-                  <label
-                    className="my-sm-0"
-                    className="my-sm-0"
-                    htmlFor="imgPath"
-                  >
+                  <label className="my-sm-0" htmlFor="imgPath">
                     imgPath
                   </label>
                   <input

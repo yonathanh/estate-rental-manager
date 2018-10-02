@@ -8,6 +8,7 @@ import Login from "../Auth/Login";
 import Projects from "../Projects/Projects";
 import Manage from "../Manage/Manage";
 import Properties from "../Properties/Properties";
+import PropertyDetails from "../Properties/PropertyDetails/PropertyDetails";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -58,23 +59,30 @@ class App extends Component {
           <Route
             exact
             path="/login"
-            render={() => (
+            render={props => (
               <div>
-                <Login setTheUserInTheAppComponent={this.getTheUser} />
+                <Login
+                  {...props}
+                  setTheUserInTheAppComponent={this.getTheUser}
+                />
               </div>
             )}
           />
           <Route
             exact
             path="/signup"
-            render={() => (
-              <Signup setTheUserInTheAppComponent={this.getTheUser} />
+            render={props => (
+              <Signup
+                {...props}
+                setTheUserInTheAppComponent={this.getTheUser}
+              />
             )}
           />
           <Route exact path="/" component={Home} />
           <Route path="/projects" component={Projects} />
           <Route path="/Manage" component={Manage} />
-          <Route path="/Properties" component={Properties} />
+          <Route exact path="/Properties" component={Properties} />
+          <Route exact path="/Properties/:id" component={PropertyDetails} />
         </Switch>
       </div>
     );

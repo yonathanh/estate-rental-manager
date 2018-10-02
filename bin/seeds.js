@@ -1,118 +1,74 @@
+const mongoose = require("mongoose");
+const Property = require("../models/Property");
 
+const dbName = "estate-rental-manager";
+mongoose.connect(`mongodb://localhost/${dbName}`);
 
+const properties = [
+  {
+    address: "Charm at the Steps of the Sacre Coeur/Montmartre",
+    imageUrl:
+      "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat1.jpg",
+    estimatePrice: 164,
+    priceCurrency: "EUR",
+    lat: 48.884211,
+    lng: 2.34689
+  },
+  {
+    address: "Trendy Apt in Buttes Montmartre",
+    imageUrl:
+      "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat2.jpg",
+    estimatePrice: 200,
+    priceCurrency: "EUR",
+    lat: 48.885707,
+    lng: 2.343543
+  },
+  {
+    address: "Super 60m2 in trendy neighborhood!",
+    imageUrl:
+      "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat3.jpg",
+    estimatePrice: 150,
+    priceCurrency: "EUR",
+    lat: 48.885312,
+    lng: 2.341225
+  },
+  {
+    address: "Splendide terrasse vue imprenable",
+    imageUrl:
+      "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat4.jpg",
+    estimatePrice: 115,
+    priceCurrency: "EUR",
+    lat: 48.88184,
+    lng: 2.343371
+  },
+  {
+    address: "Superbe vue à 2 min du Sacré Coeur",
+    imageUrl:
+      "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat5.jpg",
+    estimatePrice: 135,
+    priceCurrency: "EUR",
+    lat: 48.888839,
+    lng: 2.339208
+  },
+  {
+    address: "Bohemian and Chic in Paris",
+    imageUrl:
+      "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat6.jpg",
+    estimatePrice: 90,
+    priceCurrency: "EUR",
+    lat: 48.827855,
+    lng: 2.350774
+  }
+];
 
-// const mongoose = require('mongoose');
-// const Cinema = require('../models/Cinema');
-
-// const dbName = 'movies-is-my-life-app';
-// mongoose.connect(`mongodb://localhost/${dbName}`);
-
-// const cinemaLinks = [
-//   {
-//     siteName: 'solar movies', 
-//     siteLink: 'http://www6.solarmoviesc.com/',
-//     imageSrc: 'https://i.imgur.com/G3mpVcJ.png',  
-//   },
-//   {
-//     siteName: 'fmovies', 
-//     siteLink: 'http://www4.fmovies.sc/',
-//     imageSrc: 'http://i.imgur.com/elDGdiO.png',  
-//   },
-//   {
-//     siteName: 'deepmovie', 
-//     siteLink: 'https://www.deepmovie.ch/',
-//     imageSrc: 'String',  
-//   },
-//   {
-//     siteName: 'hdo.to', 
-//     siteLink: 'https://hdo.to/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'ymovies.tv', 
-//     siteLink: 'https://ymovies.tv/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'moviewatcher.is', 
-//     siteLink: 'https://moviewatcher.is/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'movie4u.live', 
-//     siteLink: 'https://movie4u.live/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'moviewatcher.is', 
-//     siteLink: 'https://moviewatcher.is/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'rainierland.is', 
-//     siteLink: 'http://www.rainierland.is/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: '123movies', 
-//     siteLink: 'http://www0.123movies.ag/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: '123moviesplay', 
-//     siteLink: 'https://www.123moviesplay.com/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlockerhub', 
-//     siteLink: 'http://putlockerhub.com/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlockers', 
-//     siteLink: 'https://putlockers.co/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlockers', 
-//     siteLink: 'https://putlockers.cz/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: '1putlocker.io', 
-//     siteLink: 'https://1putlocker.io/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlocker123.org', 
-//     siteLink: 'https://putlocker123.org/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlocker.cl', 
-//     siteLink: 'https://putlocker.cl/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlockers.la', 
-//     siteLink: 'http://www3.putlockers.la/', 
-//     imageSrc: 'String', 
-//   },
-//   {
-//     siteName: 'putlocker.run', 
-//     siteLink: 'https://putlocker.run/', 
-//     imageSrc: 'String', 
-//   },
-// ];
-
-// Cinema.create(cinemaLinks)
-// .then((theThingIGet)=>{
-//   console.log(theThingIGet);
-//    mongoos.connection.close(); // no need for control + c, to exit node after creation. function will exit node after for you ;)
-// })
-// .catch((err)=>{
-//   console.log(err);
-// })
+Property.create(properties)
+  .then(theThingIGet => {
+    console.log(theThingIGet);
+    mongoos.connection.close(); // no need for control + c, to exit node after creation. function will exit node after for you ;)
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 //-------------------------------------------- End Cinema
 //-------------------------------------------- Start Movies
@@ -181,7 +137,6 @@
 //     image: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA3MDkxOTc4NDdeQTJeQWpwZ15BbWU4MDAxNzgyNTQz._V1_UX182_CR0,0,182,268_AL_.jpg"
 //   }
 // ];
-
 
 // Movie.create(movies)
 // .then((theThingIGet)=>{

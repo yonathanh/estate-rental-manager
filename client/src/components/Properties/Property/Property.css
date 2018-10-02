@@ -18,3 +18,9 @@
   color: rgb(185, 250, 245);
   max-width: 300px;
 }
+
+a,
+a:hover {
+  color: black;
+  text-decoration: none; /* no underline */
+}

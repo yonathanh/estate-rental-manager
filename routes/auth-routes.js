@@ -240,7 +240,7 @@ router.post(
   "/profile/update/:id",
   uploadCloud.single("photo"),
   (req, res, next) => {
-    console.log("---------------------------------------", req.file);
+    //console.log("---------------------------------------", req.file);
 
     //----------------------------------- user example
     // const userSchema = new Schema({
@@ -257,12 +257,15 @@ router.post(
     // contracts: Array,
     // Properties: Array
 
-    //need to figure out how to not chnage password if leave empty and change with hash if change
-
     const userObject = {
       username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
-      imageUrl: req.body.imageUrl
+      phone: req.body.phone,
+      address: req.body.address,
+      imageUrl: req.body.imageUrl,
+      contracts: req.body.contracts,
+      Properties: req.body.Properties
     };
     if (req.body.password) {
       userObject.password = req.body.password;
@@ -278,10 +281,10 @@ router.post(
 
     User.findByIdAndUpdate(req.params.id, userObject)
       .then(response => {
-        res.redirect("/");
+        res.json(response);
       })
       .catch(err => {
-        next(err);
+        res.json(err);
       });
   }
 ); /*   End Editing A User page */

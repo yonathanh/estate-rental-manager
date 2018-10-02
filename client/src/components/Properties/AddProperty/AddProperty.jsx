@@ -1,23 +1,47 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class AddProperty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameField: "",
-      imageField: "",
+      addressField: "",
+      imageUrlField: "",
+      imageFileField: "",
       priceField: "",
-      priceCurrencyField: "",
       latField: "",
       lngField: ""
     };
   }
-  // "name": "Super 60m2 in trendy neighborhood!",
-  // "imageUrl": "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat3.jpg",
-  // "price": 150,
-  // "priceCurrency": "EUR",
-  // "lat": 48.885312,
-  // "lng": 2.341225
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    const propertyObject = {
+      address: this.state.addressField,
+      imageUrl: this.state.imageUrlField,
+      estimatePrice: this.state.priceField,
+      lat: this.state.latField,
+      lng: this.state.lngField,
+      imgPath: this.state.imgPath
+    };
+
+    axios
+      .post("http://localhost:5000/api/addProperty", propertyObject)
+      .then(() => {
+        //e => this.props.addNew(e, this.state);
+        // this.props.getData(); //if you want to show the new property on window
+        this.setState({
+          addressField: "",
+          imageUrlField: "",
+          imageFileField: "",
+          priceField: "",
+          latField: "",
+          lngField: ""
+        });
+      })
+      .catch(error => console.log(error));
+  };
 
   fieldChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -25,17 +49,17 @@ class AddProperty extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.props.addNew(e, this.state)}>
+      <form onSubmit={this.handleFormSubmit}>
         <div className="field">
           <p className="control has-icons-left has-icons-right">
-            <label>Name</label>
+            <label className="my-sm-0">Address</label>
             <input
-              name="nameField"
-              className="input"
+              name="addressField"
+              className="input form-control"
               type="text"
               onChange={e => this.fieldChange(e)}
-              value={this.state.nameField}
-              placeholder="Name"
+              value={this.state.addressField}
+              placeholder="address"
             />
             <span className="icon is-small is-left">
               <i className="fas fa-envelope" />
@@ -47,10 +71,10 @@ class AddProperty extends Component {
         </div>
         <div className="field">
           <p className="control has-icons-left">
-            <label>ImageUrl</label>
+            <label className="my-sm-0">ImageUrl</label>
             <input
               name="imageField"
-              className="input"
+              className="form-control input"
               type="text"
               onChange={e => this.fieldChange(e)}
               value={this.state.imageField}
@@ -63,10 +87,26 @@ class AddProperty extends Component {
         </div>
         <div className="field">
           <p className="control has-icons-left">
-            <label>Price</label>
+            <label className="my-sm-0">Image file</label>
+            <input
+              name="imageFileField"
+              className="form-control input"
+              type="file"
+              onChange={e => this.fieldChange(e)}
+              value={this.state.imageFileField}
+              placeholder="Image file"
+            />
+            <span className="icon is-small is-left">
+              <i className="fas fa-lock" />
+            </span>
+          </p>
+        </div>
+        <div className="field">
+          <p className="control has-icons-left">
+            <label className="my-sm-0">Price</label>
             <input
               name="priceField"
-              className="input"
+              className="form-control input"
               type="number"
               onChange={e => this.fieldChange(e)}
               value={this.state.priceField}
@@ -79,10 +119,10 @@ class AddProperty extends Component {
         </div>
         <div className="field">
           <p className="control has-icons-left">
-            <label>priceCurrency</label>
+            <label className="my-sm-0">priceCurrency</label>
             <input
               name="priceCurrencyField"
-              className="input"
+              className="form-control input"
               type="text"
               onChange={e => this.fieldChange(e)}
               value={this.state.priceCurrencyField}
@@ -95,10 +135,10 @@ class AddProperty extends Component {
         </div>
         <div className="field">
           <p className="control has-icons-left">
-            <label>lat</label>
+            <label className="my-sm-0">lat</label>
             <input
               name="latField"
-              className="input"
+              className="form-control input"
               type="number"
               onChange={e => this.fieldChange(e)}
               value={this.state.latField}
@@ -111,10 +151,10 @@ class AddProperty extends Component {
         </div>
         <div className="field">
           <p className="control has-icons-left">
-            <label>lngFieldChange</label>
+            <label className="my-sm-0">lngFieldChange</label>
             <input
               name="lngField"
-              className="input"
+              className="form-control input"
               type="number"
               onChange={e => this.fieldChange(e)}
               value={this.state.lngField}
