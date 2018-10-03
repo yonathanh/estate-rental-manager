@@ -42,20 +42,20 @@ class MyNavBar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-link navbar-brand">
-              <Link className="link" to="/Manage">
+              <Link className="link" to="/manage">
                 Manage
               </Link>
             </li>
             <div className="nav-item">
               <li className="nav-link navbar-brand">
-                <Link className="link" to="/Projects">
+                <Link className="link" to="/projects">
                   Projects
                 </Link>
               </li>
             </div>
             <div className="nav-item">
               <li className="nav-link navbar-brand">
-                <Link className="link" to="/Properties">
+                <Link className="link" to="/properties">
                   Properties
                 </Link>
               </li>
@@ -159,6 +159,11 @@ class MyNavBar extends Component {
                   Login
                 </Link>
               </li>
+              <li className="nav-link navbar-brand">
+                <Link className="btn btn-outline-info" to="/signup">
+                  Signup
+                </Link>
+              </li>
             </div>
           )}
           {this.state.loggedInUser && (
@@ -166,7 +171,7 @@ class MyNavBar extends Component {
               <li className="nav-link navbar-brand">
                 <Link
                   className="user-profile btn-sm btn-outline-info"
-                  to="/projects"
+                  to="/profile"
                   style={{ textDecoration: "none" }}
                 >
                   {this.state.loggedInUser.username}

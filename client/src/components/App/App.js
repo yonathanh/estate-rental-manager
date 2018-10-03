@@ -5,10 +5,12 @@ import MyNavBar from "../NavBar/MyNavBar";
 import AuthService from "../Auth/Auth-service";
 import Signup from "../Auth/Signup";
 import Login from "../Auth/Login";
+import Profile from "../Auth/Profile";
 import Projects from "../Projects/Projects";
 import Manage from "../Manage/Manage";
 import Properties from "../Properties/Properties";
 import PropertyDetails from "../Properties/PropertyDetails/PropertyDetails";
+import LeaseDetails from "../Properties/Lease/LeaseDetails/LeaseDetails";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -23,6 +25,7 @@ class App extends Component {
   }
 
   getTheUser = userObj => {
+    console.log("calling the function", userObj);
     this.setState({
       loggedInUser: userObj
     });
@@ -78,11 +81,23 @@ class App extends Component {
               />
             )}
           />
+          <Route
+            exact
+            path="/profile"
+            render={props => (
+              <Profile
+                {...props}
+                setTheUserInTheAppComponent={this.getTheUser}
+                theUser={this.state.loggedInUser}
+              />
+            )}
+          />
           <Route exact path="/" component={Home} />
           <Route path="/projects" component={Projects} />
-          <Route path="/Manage" component={Manage} />
-          <Route exact path="/Properties" component={Properties} />
-          <Route exact path="/Properties/:id" component={PropertyDetails} />
+          <Route path="/manage" component={Manage} />
+          <Route exact path="/properties" component={Properties} />
+          <Route exact path="/properties/:id" component={PropertyDetails} />
+          <Route exact path="/properties/lease/:id" component={LeaseDetails} />
         </Switch>
       </div>
     );

@@ -9,7 +9,7 @@ class Home extends Component {
         <div className="fb-profile">
           <img
             align="left"
-            className="fb-image-lg"
+            className="mb-4 fb-image-lg"
             src="/imgs/house-background.jpg"
             alt="Background"
           />
@@ -21,8 +21,16 @@ class Home extends Component {
             alt="for rent"
           />
           <div className="fb-profile-text">
-            <h1>estate-rental-manager</h1>
-            <p>Best rental mangment app</p>
+            <div class="main-wrap">
+              {/* <img
+                class="main-gif"
+                src="/imgs/walking-house-gif.gif"
+                alt="main-gif"
+              /> */}
+              <h1 class="main-header">estate-rental-manager</h1>
+            </div>
+
+            <p>Management app</p>
           </div>
         </div>
       </div>

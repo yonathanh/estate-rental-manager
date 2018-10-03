@@ -33,16 +33,8 @@ class Property extends Component {
           Delete
         </button>
         <button className="btn-info">
-          <Link to={`/Properties/${this.props.Property._id}`}>Details</Link>
+          <Link to={`/properties/${this.props.Property._id}`}>Details</Link>
         </button>
-        {/* <button
-          className="btn-info"
-          onClick={() =>
-            this.props.detailsClickHandler(this.props.Property._id)
-          }
-        >
-          Details
-        </button> */}
       </div>
     );
   }

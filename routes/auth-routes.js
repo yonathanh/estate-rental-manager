@@ -224,19 +224,19 @@ passport.use(
 // must use form in html for post!
 //================================================
 /* GET /user edit page */
-router.get("/profile/:id", (req, res, next) => {
-  //console.log("===========-----------",req.params.id);
-  User.findById(req.params.id)
-    .then(theUser => {
-      res.render("auth/profile", { user: theUser });
-    })
-    .catch(err => {
-      next(err);
-    });
-});
+// router.get("/profile/:id", (req, res, next) => {
+//   //console.log("===========-----------",req.params.id);
+//   User.findById(req.params.id)
+//     .then(theUser => {
+//       res.render("auth/profile", { user: theUser });
+//     })
+//     .catch(err => {
+//       next(err);
+//     });
+// });
 
 /*   rout sent, after using form action */
-router.post(
+router.put(
   "/profile/update/:id",
   uploadCloud.single("photo"),
   (req, res, next) => {

@@ -4,11 +4,27 @@ li {
   list-style-type: none;
 }
 
+html {
+  /* height: 100%; */
+}
+
 body {
   background-image: url(/imgs/minimalism-tree.jpg);
   background-repeat: no-repeat;
   background-size: cover; /* -> fix properties page?? */
+  background-color: #84a9a2;
 }
+/* 
+h1,
+h2 {
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px red;
+  letter-spacing: 3px;
+  font-size: 2.2rem;
+  font-family: "Indie Flower", cursive;
+  border-radius: 10px;
+  animation: header 5s ease-in infinite alternate;
+} */
 
 /* ======================= Header =================== */
 .App {
@@ -16,7 +32,7 @@ body {
 }
 .alwaysTop {
   position: absolute;
-  top: 1px;
+  top: 5px;
   left: 47%;
 }
 

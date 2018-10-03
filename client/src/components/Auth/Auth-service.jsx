@@ -17,6 +17,13 @@ class AuthService {
       .then(response => response.data);
   };
 
+  edit = userObject => {
+    console.log("userObject", userObject);
+    return this.service
+      .put(`/profile/update/${userObject._id}`, userObject)
+      .then(response => response.data);
+  };
+
   login = (username, password) => {
     return this.service
       .post("/login", { username, password })

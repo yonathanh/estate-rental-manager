@@ -63,7 +63,7 @@ class Properties extends Component {
           key={index}
           lat={oneProperty.lat}
           lng={oneProperty.lng}
-          price={oneProperty.price}
+          price={oneProperty.estimatePrice}
           selected={oneProperty === this.state.selectedProperty}
         />
       );
@@ -113,10 +113,6 @@ class Properties extends Component {
       searchedProperties: allTheProperties
     });
     this.togglePropertyForm();
-  };
-
-  PropertyDetails = propertyId => {
-    console.log("-=-=-=-=-=-=-==-=-=", propertyId);
   };
 
   deleteProperty = propertyId => {
@@ -170,7 +166,13 @@ class Properties extends Component {
         <div className="map">
           <div className="add-new">
             {this.state.toggleAddProperty && (
-              <AddProperty addNew={this.addNewProperty} />
+              <div className="container-fluid h-100">
+                <div className="row justify-content-center align-items-center h-100">
+                  <div className="col col-md-10">
+                    <AddProperty addNew={this.addNewProperty} />
+                  </div>
+                </div>
+              </div>
             )}
           </div>
           <GoogleMapsReact

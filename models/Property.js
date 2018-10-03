@@ -1,18 +1,29 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Lease = require("./Lease");
 
 const propertySchema = new Schema(
   {
     manager: String,
     tenants: Array,
-    address: String,
-    propertyDetails: Object,
-    imageUrl: String,
+    type: String,
+    beds: Number,
+    baths: Number,
+    squareFeet: Number,
     estimatePrice: Number,
+    address: String,
+    city: String,
+    state: String,
+    zip: Number,
+    imageUrl: String,
+    pets: String,
+    smoking: String,
+    parking: String,
+    downPayment: Number,
+    fees: Number,
     lat: Number,
     lng: Number,
-    contractDetails: Array,
-    leaseID: Array,
+    lease: { type: Schema.Types.ObjectId, ref: "Lease" },
     imgName: String,
     imgPath: String
   },

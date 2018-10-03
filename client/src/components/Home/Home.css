@@ -4,6 +4,16 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+h1 {
+  text-transform: uppercase;
+  text-shadow: 0 2px 3px red;
+  letter-spacing: 3px;
+  font-size: 2.2rem;
+  font-family: "Indie Flower", cursive !important;
+  border-radius: 10px;
+  animation: header 5s ease-in infinite alternate;
+}
+
 .fb-profile img.fb-image-lg {
   z-index: 0;
   width: 100%;
@@ -31,3 +41,42 @@ body {
     border-radius: 20px;
   }
 }
+
+/* //----- gif animation ------- */
+.main-wrap {
+  position: relative;
+}
+
+.main-gif {
+  position: absolute;
+  width: 60px;
+  bottom: 45px;
+  left: 0;
+  animation: gifWalk 30s linear infinite;
+}
+
+@keyframes gifWalk {
+  0% {
+    transform: translateX(0) scaleX(-1);
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(1040px) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+@keyframes header {
+  from {
+    color: black;
+    text-shadow: 0 2px 3px green;
+  }
+  to {
+    color: purple;
+    text-shadow: 0 2px 5px red;
+  }
+}
+/* //----- End gif animation ------- */

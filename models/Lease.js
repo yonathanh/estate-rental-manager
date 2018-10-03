@@ -5,19 +5,12 @@ const leaseSchema = new Schema(
   {
     manager: String,
     tenant: String,
-    price: String,
-    propertyID: String,
+    startDate: Date,
+    endDate: Date,
+    property: [{ type: Schema.Types.ObjectId, ref: "Property" }],
     paymentMethod: Object,
-    amenities: Array,
-    downPayment: Number,
-    fees: Number,
-    additionalCharges: Number,
-    dueDate: Date,
     signature: String,
-    status: { type: String, default: "pending" },
-    imageUrl: String,
-    imgName: String,
-    imgPath: String
+    status: { type: String, default: "pending" }
   },
   {
     timestamps: {

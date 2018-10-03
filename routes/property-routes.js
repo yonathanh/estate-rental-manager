@@ -33,10 +33,23 @@ router.get("/properties", (req, res, next) => {
 
 // POST route => to create a new Property
 router.post("/properties", uploadCloud.single("photo"), (req, res, next) => {
+  console.log("req.body.beds", req.body);
   const PropertyObject = {
-    address: req.body.address,
-    imageUrl: req.body.imageUrl,
+    type: req.body.type,
+    beds: req.body.beds,
+    baths: req.body.baths,
+    squareFeet: req.body.squareFeet,
     estimatePrice: req.body.estimatePrice,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    pets: req.body.pets,
+    smoking: req.body.smoking,
+    parking: req.body.parking,
+    downPayment: req.body.downPayment,
+    fees: req.body.fees,
+    imageUrl: req.body.imageUrl,
     lat: req.body.lat,
     lng: req.body.lng
   };
@@ -63,13 +76,14 @@ router.get("/properties/:id", (req, res, next) => {
     return;
   }
 
-  // our Property have array of tasks' ids and
-  // we can use .populate() method to get the whole task objects
+  // our Property have array of lease' ids and
+  // we can use .populate() method to get the whole lease objects
   //                                   ^
   //                                   |
   //
 
-  Property.findById(req.params.id)
+  Property.findById(req.params.id) //.populate('lease')
+    //.populate("lease")
     .then(response => {
       res.json(response);
     })
