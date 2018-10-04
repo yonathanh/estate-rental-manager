@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require("./User");
 const Lease = require("./Lease");
 
 const propertySchema = new Schema(
   {
-    manager: String,
-    tenants: Array,
+    manager: { type: Schema.Types.ObjectId, ref: "User" },
+    tenants: { type: Schema.Types.ObjectId, ref: "User" },
     type: String,
     beds: Number,
     baths: Number,
     squareFeet: Number,
-    estimatePrice: Number,
+    price: Number,
     address: String,
     city: String,
     state: String,
@@ -21,8 +22,8 @@ const propertySchema = new Schema(
     parking: String,
     downPayment: Number,
     fees: Number,
-    lat: Number,
-    lng: Number,
+    lat: { type: Number, default: 40.7128 },
+    lng: { type: Number, default: 74.006 },
     lease: { type: Schema.Types.ObjectId, ref: "Lease" },
     imgName: String,
     imgPath: String

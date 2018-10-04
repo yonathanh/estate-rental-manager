@@ -63,7 +63,7 @@ class Properties extends Component {
           key={index}
           lat={oneProperty.lat}
           lng={oneProperty.lng}
-          price={oneProperty.estimatePrice}
+          price={oneProperty.price}
           selected={oneProperty === this.state.selectedProperty}
         />
       );
@@ -136,7 +136,7 @@ class Properties extends Component {
             />
             <button onClick={this.togglePropertyForm}>Add New</button>
           </div>
-          <div className="Properies">{this.showProperties()}</div>
+          <div className="Properties">{this.showProperties()}</div>
         </div>
         <div className="map">
           <div className="add-new">

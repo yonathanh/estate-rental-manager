@@ -1,13 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require("./User");
+const Property = require("./Property");
 
 const leaseSchema = new Schema(
   {
-    manager: String,
-    tenant: String,
+    manager: { type: Schema.Types.ObjectId, ref: "User" },
+    tenant: { type: Schema.Types.ObjectId, ref: "User" },
     startDate: Date,
     endDate: Date,
-    property: [{ type: Schema.Types.ObjectId, ref: "Property" }],
+    property: { type: Schema.Types.ObjectId, ref: "Property" },
     paymentMethod: Object,
     signature: String,
     status: { type: String, default: "pending" }
@@ -20,6 +22,6 @@ const leaseSchema = new Schema(
   }
 );
 
-const lease = mongoose.model("lease", leaseSchema);
+const Lease = mongoose.model("Lease", leaseSchema);
 
-module.exports = lease;
+module.exports = Lease;

@@ -7,34 +7,32 @@ class Property extends Component {
     this.props.selectProperty(this.props.Property);
   };
   render() {
-    const title = `${this.props.Property.price}${
-      this.props.Property.priceCurrency
-    }-${this.props.Property.address}`;
+    const title = `${this.props.Property.address} For ${
+      this.props.Property.price
+    }$`;
 
-    const style = {
-      BackgroundImage: `url(${this.props.Property.imageUrl})`,
-      hight: "200px",
-      BackgroundSize: "cover",
-      BackgroundPosition: "center"
-    };
     return (
       <div className="property" onClick={this.handelClick}>
-        <div style={style} />
         <img
           className="property-poster"
           src={this.props.Property.imageUrl}
           alt="Background"
         />
+
         <div className="property-title">{title}</div>
-        <button
-          style={{ backgroundColor: "red", margin: "0 5px" }}
-          onClick={() => this.props.deleteClickHandler(this.props.Property._id)}
-        >
-          Delete
-        </button>
-        <button className="btn-info">
-          <Link to={`/properties/${this.props.Property._id}`}>Details</Link>
-        </button>
+        <div className="btn-block">
+          <button
+            style={{ backgroundColor: "red", margin: "0 5px" }}
+            onClick={() =>
+              this.props.deleteClickHandler(this.props.Property._id)
+            }
+          >
+            Delete
+          </button>
+          <button className="btn-info">
+            <Link to={`/properties/${this.props.Property._id}`}>Details</Link>
+          </button>
+        </div>
       </div>
     );
   }

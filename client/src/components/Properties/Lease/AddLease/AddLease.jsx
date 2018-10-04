@@ -13,11 +13,19 @@ class AddLease extends Component {
     const LeaseObject = {
       startDate: this.state.startDateField,
       endDate: this.state.endDateField,
-      imgPath: this.state.imgPath
+      imgPath: this.state.imgPath,
+      property: this.props.theProperty._id,
+      manager: this.props.theProperty.manager
     };
 
     axios
-      .post("http://localhost:5000/api/addLease", LeaseObject)
+      .post(
+        "http://localhost:5000/api/lease/" + this.props.theProperty._id,
+        LeaseObject,
+        {
+          withCredentials: true
+        }
+      )
       .then(() => {
         this.setState({
           startDateField: "",

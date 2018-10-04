@@ -33,8 +33,9 @@ router.post(
   "/lease/:propertyID",
   uploadCloud.single("photo"),
   (req, res, next) => {
-    Property.findById(req.param.propertyID)
+    Property.findById(req.params.propertyID)
       .then(propertyFromDB => {
+        console.log("propertyFromDB", propertyFromDB);
         const LeaseObject = {
           manager: propertyFromDB.manager,
           startDate: req.body.startDate,
@@ -81,7 +82,9 @@ router.get("/lease/:id", (req, res, next) => {
   //
 
   Lease.findById(req.params.id) //.populate()
-    .populate()
+    .populate("manager")
+    .populate("tenant")
+    .populate("property")
     .then(response => {
       res.json(response);
     })

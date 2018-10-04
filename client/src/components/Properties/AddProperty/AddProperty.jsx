@@ -35,7 +35,7 @@ class AddProperty extends Component {
       beds: this.state.bedsField,
       baths: this.state.bathsField,
       squareFeet: this.state.squareFeetField,
-      estimatePrice: this.state.priceField,
+      price: this.state.priceField,
       address: this.state.addressField,
       city: this.state.cityField,
       state: this.state.stateField,
@@ -52,7 +52,9 @@ class AddProperty extends Component {
     };
 
     axios
-      .post("http://localhost:5000/api/properties", propertyObject)
+      .post("http://localhost:5000/api/properties", propertyObject, {
+        withCredentials: true
+      })
       .then(() => {
         this.props.addNew(); // toggle form and display on window updated
         this.props.toggleForm();

@@ -1,15 +1,18 @@
 // routes/Property-routes.js
+const Property = require("../models/Property");
+const Lease = require("../models/Lease");
+const User = require("../models/User");
 const express = require("express");
 const router = express.Router();
 
 const uploadCloud = require("../config/cloudinary.js");
 
 const mongoose = require("mongoose");
-const Property = require("../models/Property");
 
 // GET route => to get all the Properties
 router.get("/properties", (req, res, next) => {
   Property.find()
+    .populate("manager")
     .sort({ created_at: -1 })
     .then(allTheProperties => {
       res.json(allTheProperties);
@@ -40,7 +43,7 @@ router.post("/properties", uploadCloud.single("photo"), (req, res, next) => {
     beds: req.body.beds,
     baths: req.body.baths,
     squareFeet: req.body.squareFeet,
-    estimatePrice: req.body.estimatePrice,
+    price: req.body.price,
     address: req.body.address,
     city: req.body.city,
     state: req.body.state,
@@ -50,10 +53,15 @@ router.post("/properties", uploadCloud.single("photo"), (req, res, next) => {
     parking: req.body.parking,
     downPayment: req.body.downPayment,
     fees: req.body.fees,
-    imageUrl: req.body.imageUrl,
-    lat: req.body.lat,
-    lng: req.body.lng
+    imageUrl: req.body.imageUrl
   };
+
+  if (req.body.lat) {
+    PropertyObject.lat = req.body.lat;
+  }
+  if (req.body.lng) {
+    PropertyObject.lat = req.body.lng;
+  }
   if (req.user) {
     PropertyObject.manager = req.user._id;
   }
@@ -83,8 +91,9 @@ router.get("/properties/:id", (req, res, next) => {
   //                                   |
   //
 
-  Property.findById(req.params.id) //.populate('lease')
-    //.populate("lease")
+  Property.findById(req.params.id)
+    .populate("manager")
+    .populate("lease")
     .then(response => {
       res.json(response);
     })
