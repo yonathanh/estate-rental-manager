@@ -1,85 +1,228 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import GoogleMapsReact from "google-map-react";
-import Marker from "../Marker/Marker";
-import "./PropertyDetails.css";
 
 class PropertyDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+
+    //   componentWillReceiveProps(){
+    // this.setState({ this.props.theProperty}) {
+
+    // }
   }
 
-  getSingleProperty = () => {
-    const { params } = this.props.match;
-    axios
-      .get(`http://localhost:5000/api/properties/${params.id}`)
-      .then(responseFromApi => {
-        // console.log("responseFromApi.data", responseFromApi.data);
-        const theProperty = responseFromApi.data;
-        this.setState(theProperty);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  componentDidMount() {
-    this.getSingleProperty();
-  }
+  // fieldChange = event => {
+  //   this.setState({ [event.target.name]: event.target.value });
+  // };
 
   render() {
-    let center = {
-      lat: this.state.lat,
-      lng: this.state.lng
-    };
-    // console.log("this.state", this.state.theProperty);
+    const theProperty = this.props.theProperty;
+    console.log("theProperty", theProperty);
     return (
-      <div className="container property" onClick={this.handelClick}>
-        <div className="row">
-          <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <h1>Hello Details</h1>
-            <h2>{this.state.address}</h2>
-            <img
-              className="property-poster"
-              src={this.state.imageUrl}
-              alt="Background"
-            />
-            <div>
-              <button className="btn-info">
-                <Link
-                  property={this.state}
-                  to={`/properties/lease/${this.state._id}`}
-                >
-                  File Application
-                </Link>
-              </button>
+      <div>
+        <p>The Manager: {theProperty.manager}</p>
+        <form onSubmit={this.handleFormSubmit}>
+          <div className="form-row">
+            <div className="form-group col-md-2">
+              <label htmlFor="inputState">Type</label>
+              <select
+                name="typeField"
+                className="form-control"
+                // onChange={e => this.fieldChange(e)}
+              >
+                <option>{theProperty.type}</option>
+              </select>
+            </div>
+            <div className="form-group col-md-2">
+              <label htmlFor="inputState">Beds</label>
+              <select
+                name="bedsField"
+                className="form-control"
+                // onChange={e => this.fieldChange(e)}
+              >
+                <option>{theProperty.beds}</option>
+              </select>
+            </div>
+            <div className="form-group col-md-2">
+              <label htmlFor="inputState">Baths</label>
+              <select
+                name="bathsField"
+                className="form-control"
+                // onChange={e => this.fieldChange(e)}
+              >
+                <option>{theProperty.baths}</option>
+              </select>
+            </div>
+            <div className="form-group col-md-3">
+              <label>Square Feet</label>
+              <input
+                name="squareFeetField"
+                className="form-control input"
+                type="number"
+                // onChange={e => this.fieldChange(e)}
+                value={theProperty.squareFeet}
+                placeholder="1300"
+              />
+            </div>
+            <div className="form-group col-md-3">
+              <label>Price $</label>
+              <input
+                name="priceField"
+                className="form-control input"
+                type="number"
+                // onChange={e => this.fieldChange(e)}
+                value={theProperty.price}
+                placeholder="567"
+              />
             </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <GoogleMapsReact
-              // bootstrapURLKeys={{ key: "AIzaSyCByLBJSe7XjwUosOuW8xah1Bn - rP23i2A" }}
-              center={center}
-              defaultZoom={12}
-            >
-              <Marker price={this.state.estimatePrice} />
-            </GoogleMapsReact>
+          <div className="form-group">
+            <label>Address</label>
+            <input
+              name="addressField"
+              className="input form-control"
+              type="text"
+              // onChange={e => this.fieldChange(e)}
+              value={theProperty.address}
+              placeholder="1234 Main St"
+            />
           </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <h2>{this.state.address}</h2>
-            <h2>{this.state.propertyDetails}</h2>
-            <h2>{this.state.estimatePrice}</h2>
-            <h2>{this.state.lat}</h2>
-            <h2>{this.state.lng}</h2>
-            <h2>{this.state.leaseID}</h2>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label>City</label>
+              <input
+                name="cityField"
+                className="input form-control"
+                type="text"
+                // onChange={e => this.fieldChange(e)}
+                value={theProperty.city}
+                placeholder="Miami"
+              />
+            </div>
+            <div className="form-group col-md-3">
+              <label>State</label>
+              <input
+                name="stateField"
+                className="input form-control"
+                type="text"
+                // onChange={e => this.fieldChange(e)}
+                value={theProperty.state}
+                placeholder="FL"
+              />
+            </div>
+            <div className="form-group col-md-3">
+              <label>Zip</label>
+              <input
+                name="zipField"
+                className="form-control input"
+                type="number"
+                // onChange={e => this.fieldChange(e)}
+                value={theProperty.zip}
+                placeholder="33156"
+              />
+            </div>
           </div>
-          <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            2 of 3
+          <div className="row">
+            <div className="form-group col-md-4">
+              <label htmlFor="inputState">Pets?</label>
+              <select
+                name="petsField"
+                className="form-control"
+                // onChange={e => this.fieldChange(e)}
+              >
+                <option>{theProperty.pets}</option>
+              </select>
+            </div>
+            <div className="form-group col-md-4">
+              <label htmlFor="inputState">Smoking?</label>
+              <select
+                name="smokingField"
+                className="form-control"
+                // onChange={e => this.fieldChange(e)}
+              >
+                <option>{theProperty.smoking}</option>
+              </select>
+            </div>
+            <div className="form-group col-md-4">
+              <label htmlFor="inputState">Parking?</label>
+              <select
+                name="parkingField"
+                className="form-control"
+                // onChange={e => this.fieldChange(e)}
+              >
+                <option>{theProperty.parking}</option>
+              </select>
+            </div>
           </div>
-        </div>
+          <div className="row">
+            <div className="field col-md-6">
+              <p className="control has-icons-left">
+                <label className="my-sm-0">lat</label>
+                <input
+                  name="latField"
+                  className="form-control input"
+                  type="number"
+                  // onChange={e => this.fieldChange(e)}
+                  value={theProperty.lat}
+                  placeholder="40.7128"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock" />
+                </span>
+              </p>
+            </div>
+            <div className="field col-md-6">
+              <p className="control has-icons-left">
+                <label className="my-sm-0">lng</label>
+                <input
+                  name="lngField"
+                  className="form-control input"
+                  type="number"
+                  // onChange={e => this.fieldChange(e)}
+                  value={theProperty.lng}
+                  placeholder="74.0060"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock" />
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="field col-md-6">
+              <p className="control has-icons-left">
+                <label className="my-sm-0">Down Payment $</label>
+                <input
+                  name="downPaymentField"
+                  className="form-control input"
+                  type="number"
+                  // onChange={e => this.fieldChange(e)}
+                  value={theProperty.downPayment}
+                  placeholder="2000"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock" />
+                </span>
+              </p>
+            </div>
+            <div className="field col-md-6">
+              <p className="control has-icons-left">
+                <label className="my-sm-0">Extra Fees $</label>
+                <input
+                  name="feesField"
+                  className="form-control input"
+                  type="number"
+                  // onChange={e => this.fieldChange(e)}
+                  value={theProperty.fees}
+                  placeholder="400"
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock" />
+                </span>
+              </p>
+            </div>
+          </div>
+        </form>
       </div>
     );
   }

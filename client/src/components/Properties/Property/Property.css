@@ -4,10 +4,6 @@
   cursor: pointer;
 }
 
-.property:hover {
-  opacity: 0.8;
-}
-
 .property-poster {
   height: 200px;
   background-size: cover;

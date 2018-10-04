@@ -9,8 +9,8 @@ import Profile from "../Auth/Profile";
 import Projects from "../Projects/Projects";
 import Manage from "../Manage/Manage";
 import Properties from "../Properties/Properties";
-import PropertyDetails from "../Properties/PropertyDetails/PropertyDetails";
-import LeaseDetails from "../Properties/Lease/LeaseDetails/LeaseDetails";
+import PropertyPage from "../Properties/PropertyPage/PropertyPage";
+import LeaseApplication from "../Properties/Lease/LeaseApplication/LeaseApplication";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -96,8 +96,12 @@ class App extends Component {
           <Route path="/projects" component={Projects} />
           <Route path="/manage" component={Manage} />
           <Route exact path="/properties" component={Properties} />
-          <Route exact path="/properties/:id" component={PropertyDetails} />
-          <Route exact path="/properties/lease/:id" component={LeaseDetails} />
+          <Route exact path="/properties/:id" component={PropertyPage} />
+          <Route
+            exact
+            path="/properties/lease/:id"
+            component={LeaseApplication}
+          />
         </Switch>
       </div>
     );

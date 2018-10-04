@@ -10,6 +10,7 @@ const Property = require("../models/Property");
 // GET route => to get all the Properties
 router.get("/properties", (req, res, next) => {
   Property.find()
+    .sort({ created_at: -1 })
     .then(allTheProperties => {
       res.json(allTheProperties);
     })

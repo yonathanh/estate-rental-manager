@@ -27,7 +27,7 @@ class AddProperty extends Component {
   }
 
   handleFormSubmit = event => {
-    // console.log("QQQQQQQQQQQQQQQQQQQ", this.state);
+    // console.log("============== this.state ===", this.state);
     event.preventDefault();
 
     const propertyObject = {
@@ -54,8 +54,8 @@ class AddProperty extends Component {
     axios
       .post("http://localhost:5000/api/properties", propertyObject)
       .then(() => {
-        //e => this.props.addNew(e, this.state); // taggle form and display on window updated???
-        // this.props.getData(); //if you want to show the new property on window
+        this.props.addNew(); // toggle form and display on window updated
+        this.props.toggleForm();
         this.setState({
           typeField: "",
           bedsField: "",
@@ -89,13 +89,13 @@ class AddProperty extends Component {
       <form onSubmit={this.handleFormSubmit}>
         <div className="form-row">
           <div className="form-group col-md-2">
-            <label for="inputState">Type</label>
+            <label htmlFor="inputState">Type</label>
             <select
               name="typeField"
               className="form-control"
               onChange={e => this.fieldChange(e)}
             >
-              <option selected>Select</option>
+              <option>Select</option>
               <option value="House">House</option>
               <option value="Apt">Apt</option>
               <option value="Condo">Condo</option>
@@ -103,13 +103,13 @@ class AddProperty extends Component {
             </select>
           </div>
           <div className="form-group col-md-2">
-            <label for="inputState">Beds</label>
+            <label htmlFor="inputState">Beds</label>
             <select
               name="bedsField"
               className="form-control"
               onChange={e => this.fieldChange(e)}
             >
-              <option selected>Select</option>
+              <option>Select</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -118,13 +118,13 @@ class AddProperty extends Component {
             </select>
           </div>
           <div className="form-group col-md-2">
-            <label for="inputState">Baths</label>
+            <label htmlFor="inputState">Baths</label>
             <select
               name="bathsField"
               className="form-control"
               onChange={e => this.fieldChange(e)}
             >
-              <option selected>Select</option>
+              <option>Select</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -164,7 +164,7 @@ class AddProperty extends Component {
             placeholder="1234 Main St"
           />
         </div>
-        <div class="form-row">
+        <div className="form-row">
           <div className="form-group col-md-6">
             <label>City</label>
             <input
@@ -187,7 +187,7 @@ class AddProperty extends Component {
               placeholder="FL"
             />
           </div>
-          <div class="form-group col-md-3">
+          <div className="form-group col-md-3">
             <label>Zip</label>
             <input
               name="zipField"
@@ -201,37 +201,37 @@ class AddProperty extends Component {
         </div>
         <div className="row">
           <div className="form-group col-md-4">
-            <label for="inputState">Pets?</label>
+            <label htmlFor="inputState">Pets?</label>
             <select
               name="petsField"
               className="form-control"
               onChange={e => this.fieldChange(e)}
             >
-              <option selected>Select</option>
+              <option>Select</option>
               <option value="yes">yes</option>
               <option value="no">no</option>
             </select>
           </div>
           <div className="form-group col-md-4">
-            <label for="inputState">Smoking?</label>
+            <label htmlFor="inputState">Smoking?</label>
             <select
               name="smokingField"
               className="form-control"
               onChange={e => this.fieldChange(e)}
             >
-              <option selected>Select</option>
+              <option>Select</option>
               <option value="yes">yes</option>
               <option value="no">no</option>
             </select>
           </div>
           <div className="form-group col-md-4">
-            <label for="inputState">Parking?</label>
+            <label htmlFor="inputState">Parking?</label>
             <select
               name="parkingField"
               className="form-control"
               onChange={e => this.fieldChange(e)}
             >
-              <option selected>Select</option>
+              <option>Select</option>
               <option value="yes">yes</option>
               <option value="no">no</option>
             </select>

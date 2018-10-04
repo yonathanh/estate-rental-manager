@@ -90,31 +90,6 @@ class Properties extends Component {
     this.setState({ toggleAddProperty: !this.state.toggleAddProperty });
   };
 
-  addNewProperty = (e, newThingToAdd) => {
-    e.preventDefault();
-
-    const newProperty = {
-      address: newThingToAdd.addressField,
-      imageUrl: newThingToAdd.imageField,
-      price: newThingToAdd.priceField,
-      priceCurrency: newThingToAdd.priceCurrencyField,
-      lat: newThingToAdd.latField,
-      lng: newThingToAdd.lngField
-    };
-
-    const allTheProperties = [...this.state.listOfProperties];
-    // const allTheProperties = this.state.listOfProperties.slice()
-    // either of these works, they each simply make a duplicate of this.state.listOfProperties
-
-    allTheProperties.unshift(newProperty);
-
-    this.setState({
-      properties: allTheProperties,
-      searchedProperties: allTheProperties
-    });
-    this.togglePropertyForm();
-  };
-
   deleteProperty = propertyId => {
     const tempProperties = [...this.state.listOfProperties];
     // ========= I dont want to delete for now, uncomment when want to reactivate
@@ -169,7 +144,10 @@ class Properties extends Component {
               <div className="container-fluid h-100">
                 <div className="row justify-content-center align-items-center h-100">
                   <div className="col col-md-10">
-                    <AddProperty addNew={this.addNewProperty} />
+                    <AddProperty
+                      addNew={this.getAllProperties}
+                      toggleForm={this.togglePropertyForm}
+                    />
                   </div>
                 </div>
               </div>

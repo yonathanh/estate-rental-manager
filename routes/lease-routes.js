@@ -21,19 +21,12 @@ router.get("/leases", (req, res, next) => {
 
 // manager: String,
 // tenant: String,
-// price: String,
-// propertyID: String,
+// startDate: Date,
+// endDate: Date,
+// property: [{ type: Schema.Types.ObjectId, ref: "Property" }],
 // paymentMethod: Object,
-// amenities: Array,
-// downPayment: Number,
-// fees: Number,
-// additionalCharges: Number,
-// dueDate: Date,
 // signature: String,
-// status: { type: String, default: "pending" },
-// imageUrl: String,
-// imgName: String,
-// imgPath: String
+// status: { type: String, default: "pending" }
 
 // POST route => to create a new Lease
 router.post(
@@ -44,16 +37,9 @@ router.post(
       .then(propertyFromDB => {
         const LeaseObject = {
           manager: propertyFromDB.manager,
-          price: req.body.price,
-          propertyID: req.body.propertyID,
-          paymentMethod: req.body.paymentMethod,
-          amenities: req.body.amenities,
-          downPayment: req.body.downPayment,
-          fees: req.body.fees,
-          additionalCharges: req.body.additionalCharges,
-          dueDate: req.body.dueDate,
-          status: req.body.status,
-          imageUrl: req.body.imageUrl
+          startDate: req.body.startDate,
+          endDate: req.body.endDate,
+          property: req.body.property
         };
         if (req.file) {
           LeaseObject.imgName = req.file.originalname;
@@ -94,7 +80,8 @@ router.get("/lease/:id", (req, res, next) => {
   //                                   |
   //
 
-  Lease.findById(req.params.id)
+  Lease.findById(req.params.id) //.populate()
+    .populate()
     .then(response => {
       res.json(response);
     })

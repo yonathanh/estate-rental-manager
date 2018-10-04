@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AddLease from "../AddLease/AddLease";
-import "./LeaseDetails.css";
+import PropertyDetails from "../../PropertyDetails/PropertyDetails";
+import "./LeaseApplication.css";
 
-class LeaseDetails extends Component {
+class LeaseApplication extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -28,12 +29,15 @@ class LeaseDetails extends Component {
   }
 
   render() {
-    console.log("this.state", this.state.theProperty);
+    console.log("this.state", this.state);
     return (
       <div className="container-fluid h-100">
         <div className="row justify-content-center align-items-center h-100">
           <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-5">
-            <AddLease />
+            <PropertyDetails theProperty={this.state} />
+          </div>
+          <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-5">
+            <AddLease theProperty={this.state} />
           </div>
         </div>
       </div>
@@ -41,4 +45,4 @@ class LeaseDetails extends Component {
   }
 }
 
-export default LeaseDetails;
+export default LeaseApplication;

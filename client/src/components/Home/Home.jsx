@@ -21,13 +21,13 @@ class Home extends Component {
             alt="for rent"
           />
           <div className="fb-profile-text">
-            <div class="main-wrap">
+            <div className="main-wrap">
               {/* <img
                 class="main-gif"
                 src="/imgs/walking-house-gif.gif"
                 alt="main-gif"
               /> */}
-              <h1 class="main-header">estate-rental-manager</h1>
+              <h1 className="main-header">estate-rental-manager</h1>
             </div>
 
             <p>Management app</p>
