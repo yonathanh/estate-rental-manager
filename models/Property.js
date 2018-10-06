@@ -22,8 +22,8 @@ const propertySchema = new Schema(
     parking: String,
     downPayment: Number,
     fees: Number,
-    lat: { type: Number, default: 40.7128 },
-    lng: { type: Number, default: 74.006 },
+    lat: { type: Number, default: 25.7617 },
+    lng: { type: Number, default: 80.1918 },
     lease: { type: Schema.Types.ObjectId, ref: "Lease" },
     imgName: String,
     imgPath: String

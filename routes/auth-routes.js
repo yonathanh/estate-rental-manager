@@ -4,6 +4,7 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const uploadCloud = require("../config/cloudinary.js");
 const nodemailer = require("nodemailer");
+
 // BCrypt to encrypt passwords
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
@@ -155,15 +156,30 @@ router.post("/logout", (req, res, next) => {
   res.status(200).json({ message: "Log out success!" });
 });
 
-router.get("/loggedin", (req, res, next) => {
-  // req.isAuthenticated() is defined by passport
-  if (req.isAuthenticated()) {
-    res.status(200).json(req.user);
-    return;
-  }
-  res.status(403).json({ message: "Unauthorized" });
-});
+// router.get("/loggedin", (req, res, next) => {
+//   // req.isAuthenticated() is defined by passport
+//   if (req.isAuthenticated()) {
+//     res
+//       .status(200)
+//       .populate("properties")
+//       .json(req.user);
 
+//     return;
+//   }
+//   res.status(403).json({ message: "Unauthorized" });
+// });
+
+router.get("/loggedin", (req, res, next) => {
+  User.findById(req.user.id)
+    .populate("properties")
+    .then(theUser => {
+      res.json(theUser);
+      console.log(theUser);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 //-------- GOOGLE Log In routs
 router.get(
   "/auth/google",

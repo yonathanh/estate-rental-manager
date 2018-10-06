@@ -14,7 +14,7 @@ const userSchema = new Schema(
     imgName: String,
     imgPath: String,
     contracts: Array,
-    Properties: Array
+    properties: [{ type: Schema.Types.ObjectId, ref: "Property" }]
   },
   {
     timestamps: {

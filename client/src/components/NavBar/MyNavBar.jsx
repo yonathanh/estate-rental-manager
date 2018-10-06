@@ -73,15 +73,15 @@ class MyNavBar extends Component {
                 Portfolio
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/">
-                  Action
+                <a className="dropdown-item" href="/properties">
+                  My Properties
                 </a>
-                <a className="dropdown-item" href="/">
-                  Another action
+                <a className="dropdown-item" href="/lease">
+                  My Leases
                 </a>
                 <div className="dropdown-divider" />
                 <a className="dropdown-item" href="/">
-                  Something else here
+                  My Tenants
                 </a>
               </div>
             </li>
@@ -171,7 +171,7 @@ class MyNavBar extends Component {
               <li className="nav-link navbar-brand">
                 <Link
                   className="user-profile btn-sm btn-outline-info"
-                  to="/profile"
+                  to="/portfolio"
                   style={{ textDecoration: "none" }}
                 >
                   {this.state.loggedInUser.username}

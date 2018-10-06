@@ -112,8 +112,8 @@ class Properties extends Component {
 
   render() {
     let center = {
-      lat: 48.8566,
-      lng: 2.3522
+      lat: 25.7617,
+      lng: 80.1918
     };
     if (this.state.selectedProperty) {
       center = {

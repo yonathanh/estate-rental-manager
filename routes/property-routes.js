@@ -71,6 +71,18 @@ router.post("/properties", uploadCloud.single("photo"), (req, res, next) => {
   }
   Property.create(PropertyObject)
     .then(response => {
+      User.findByIdAndUpdate(
+        req.user._id,
+
+        { $push: { properties: response._id } }
+      )
+        .then(response => {
+          //  console.log("responseeeeeeeeeeeeeeeeeeee", response);
+          res.json(response);
+        })
+        .catch(err => {
+          res.json(err);
+        });
       res.json(response);
     })
     .catch(err => {

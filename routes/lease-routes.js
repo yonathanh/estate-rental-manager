@@ -42,6 +42,9 @@ router.post(
           endDate: req.body.endDate,
           property: req.body.property
         };
+        if (req.user) {
+          LeaseObject.tenant = req.user._id;
+        }
         if (req.file) {
           LeaseObject.imgName = req.file.originalname;
           LeaseObject.imgPath = req.file.url;

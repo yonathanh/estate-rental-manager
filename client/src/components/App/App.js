@@ -5,7 +5,7 @@ import MyNavBar from "../NavBar/MyNavBar";
 import AuthService from "../Auth/Auth-service";
 import Signup from "../Auth/Signup";
 import Login from "../Auth/Login";
-import Profile from "../Auth/Profile";
+import Portfolio from "../User/Portfolio";
 import Projects from "../Projects/Projects";
 import Manage from "../Manage/Manage";
 import Properties from "../Properties/Properties";
@@ -83,9 +83,9 @@ class App extends Component {
           />
           <Route
             exact
-            path="/profile"
+            path="/portfolio"
             render={props => (
-              <Profile
+              <Portfolio
                 {...props}
                 setTheUserInTheAppComponent={this.getTheUser}
                 theUser={this.state.loggedInUser}
