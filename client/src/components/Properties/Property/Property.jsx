@@ -37,6 +37,14 @@ class Property extends Component {
           <button className="btn-info">
             <Link to={`/properties/${this.props.Property._id}`}>Details</Link>
           </button>
+          <button
+            style={{ backgroundColor: "orange", margin: "0 5px" }}
+            onClick={() =>
+              this.props.deleteClickHandler(this.props.Property._id)
+            }
+          >
+            <Link to={`/properties/edit/${this.props.Property._id}`}>Edit</Link>
+          </button>
         </div>
       </div>
     );

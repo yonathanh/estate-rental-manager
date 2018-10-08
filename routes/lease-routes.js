@@ -51,11 +51,12 @@ router.post(
         }
         Lease.create(LeaseObject)
           .then(leaseFromDB => {
+            res.json(leaseFromDB);
             propertyFromDB.contractDetails
               .push(leaseFromDB)
               .propertyFromDB.save()
-              .then(updatedProperty => {
-                res.json(updatedProperty);
+              .then(() => {
+                res.json(leaseFromDB);
               })
               .catch(err => {
                 res.status(400).json(err);

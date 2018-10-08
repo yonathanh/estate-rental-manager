@@ -11,6 +11,8 @@ import Manage from "../Manage/Manage";
 import Properties from "../Properties/Properties";
 import PropertyPage from "../Properties/PropertyPage/PropertyPage";
 import LeaseApplication from "../Properties/Lease/LeaseApplication/LeaseApplication";
+import EditProperty from "../Properties/EditProperty/EditProperty";
+import LeasePdf from "../Properties/Lease/LeasePdf/LeasePdf";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -25,7 +27,7 @@ class App extends Component {
   }
 
   getTheUser = userObj => {
-    console.log("calling the function", userObj);
+    //console.log("calling the function", userObj);
     this.setState({
       loggedInUser: userObj
     });
@@ -84,14 +86,25 @@ class App extends Component {
           <Route
             exact
             path="/portfolio"
-            render={props => (
-              <Portfolio
-                {...props}
-                fetchUser={() => this.fetchUser}
-                setTheUserInTheAppComponent={this.getTheUser}
-                theUser={this.state.loggedInUser}
-              />
-            )}
+            render={props => {
+              if (this.state.loggedInUser) {
+                return (
+                  <Portfolio
+                    {...props}
+                    fetchUser={() => this.fetchUser}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                    theUser={this.state.loggedInUser}
+                  />
+                );
+              } else {
+                return (
+                  <Login
+                    {...props}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                  />
+                );
+              }
+            }}
           />
           <Route exact path="/" component={Home} />
           <Route path="/projects" component={Projects} />
@@ -113,7 +126,50 @@ class App extends Component {
           <Route
             exact
             path="/properties/lease/:id"
-            component={LeaseApplication}
+            render={props => {
+              if (this.state.loggedInUser) {
+                return <LeaseApplication {...props} />;
+              } else {
+                return (
+                  <Login
+                    {...props}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                  />
+                );
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/properties/edit/:id"
+            render={props => {
+              if (this.state.loggedInUser) {
+                return <EditProperty {...props} />;
+              } else {
+                return (
+                  <Login
+                    {...props}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                  />
+                );
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/lease/:id"
+            render={props => {
+              if (this.state.loggedInUser) {
+                return <LeasePdf {...props} />;
+              } else {
+                return (
+                  <Login
+                    {...props}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                  />
+                );
+              }
+            }}
           />
         </Switch>
       </div>

@@ -26,12 +26,14 @@ class AddLease extends Component {
           withCredentials: true
         }
       )
-      .then(() => {
+      .then(leaseFromDB => {
+        // console.log("leaseFromDB", leaseFromDB);
         this.setState({
           startDateField: "",
           endDateField: "",
           imageFileField: ""
         });
+        this.props.history.push(`/lease/${leaseFromDB.data._id}`);
       })
       .catch(error => console.log(error));
   };
@@ -41,6 +43,7 @@ class AddLease extends Component {
   };
 
   render() {
+    //console.log("this.props.history", this.props);
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>

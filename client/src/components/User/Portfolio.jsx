@@ -23,6 +23,10 @@ class Portfolio extends Component {
 
   showProperties = () => {
     if (this.props.theUser) {
+      console.log(
+        "this.props.theUser.properties",
+        this.props.theUser.properties
+      );
       return this.props.theUser.properties.map((oneProperty, index) => {
         return (
           <Property

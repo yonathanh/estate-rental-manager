@@ -171,7 +171,13 @@ router.post("/logout", (req, res, next) => {
 
 router.get("/loggedin", (req, res, next) => {
   User.findById(req.user.id)
-    .populate("properties")
+    .populate({
+      path: "properties",
+      populate: {
+        path: "manager",
+        model: "User"
+      }
+    })
     .then(theUser => {
       res.json(theUser);
       console.log(theUser);

@@ -115,7 +115,7 @@ router.get("/properties/:id", (req, res, next) => {
 });
 
 // PUT route => to update a specific Property
-router.put("/properties/:id", (req, res, next) => {
+router.put("/properties/edit/:id", (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
