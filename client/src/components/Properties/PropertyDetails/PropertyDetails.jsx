@@ -17,7 +17,7 @@ class PropertyDetails extends Component {
 
     return (
       <div>
-        <p>The Manager: {manager.name}</p>
+        <h3>Manager: {manager.name}</h3>
         <div onSubmit={this.handleFormSubmit}>
           <div className="form-row">
             <div className="form-group col-md-2">

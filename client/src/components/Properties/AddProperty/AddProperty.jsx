@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "./AddProperty.css";
+
 class AddProperty extends Component {
   constructor(props) {
     super(props);
@@ -270,6 +272,16 @@ class AddProperty extends Component {
               <i className="fas fa-lock" />
             </span>
           </p>
+        </div>
+        <div className="row">
+          <a
+            className="field col-md-12"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.latlong.net/"
+          >
+            <h6>Get Latitude and Longitude click here</h6>
+          </a>
         </div>
         <div className="row">
           <div className="field col-md-6">

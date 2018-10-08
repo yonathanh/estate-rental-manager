@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+//import axios from "axios";
 import Property from "../Properties/Property/Property";
 import AddProperty from "../Properties/AddProperty/AddProperty";
 import Profile from "../Auth/Profile";
@@ -67,17 +67,20 @@ class Portfolio extends Component {
     });
   };
 
+  componentWillReceiveProps() {
+    this.setState({});
+  }
   render() {
-    let center = {
-      lat: 25.7617,
-      lng: 80.1918
-    };
-    if (this.state.selectedProperty) {
-      center = {
-        lat: this.state.selectedProperty.lat,
-        lng: this.state.selectedProperty.lng
-      };
-    }
+    // let center = {
+    //   lat: 25.7617,
+    //   lng: 80.1918
+    // };
+    // if (this.state.selectedProperty) {
+    //   center = {
+    //     lat: this.state.selectedProperty.lat,
+    //     lng: this.state.selectedProperty.lng
+    //   };
+    // }
 
     let theUser = "John";
     if (this.props.theUser) {
@@ -99,7 +102,7 @@ class Portfolio extends Component {
                 <div className="row justify-content-center align-items-center h-100">
                   <div className="col col-md-10">
                     <AddProperty
-                      addNew={this.getAllProperties}
+                      addNew={this.props.fetchUser}
                       toggleForm={this.togglePropertyForm}
                     />
                   </div>
@@ -109,7 +112,7 @@ class Portfolio extends Component {
           </div>
           <Profile
             setTheUserInTheAppComponent={this.props.setTheUserInTheAppComponent}
-            theUser={theUser}
+            theUser={this.props.theUser}
           />
         </div>
       </div>

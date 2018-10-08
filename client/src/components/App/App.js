@@ -87,6 +87,7 @@ class App extends Component {
             render={props => (
               <Portfolio
                 {...props}
+                fetchUser={() => this.fetchUser}
                 setTheUserInTheAppComponent={this.getTheUser}
                 theUser={this.state.loggedInUser}
               />
@@ -95,8 +96,20 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/projects" component={Projects} />
           <Route path="/manage" component={Manage} />
-          <Route exact path="/properties" component={Properties} />
-          <Route exact path="/properties/:id" component={PropertyPage} />
+          <Route
+            exact
+            path="/properties"
+            render={props => (
+              <Properties {...props} theUser={this.state.loggedInUser} />
+            )}
+          />
+          <Route
+            exact
+            path="/properties/:id"
+            render={props => (
+              <PropertyPage {...props} theUser={this.state.loggedInUser} />
+            )}
+          />
           <Route
             exact
             path="/properties/lease/:id"

@@ -37,7 +37,7 @@ router.get("/properties", (req, res, next) => {
 
 // POST route => to create a new Property
 router.post("/properties", uploadCloud.single("photo"), (req, res, next) => {
-  console.log("req.body.beds", req.body);
+  //console.log("req.body.beds", req.body);
   const PropertyObject = {
     type: req.body.type,
     beds: req.body.beds,

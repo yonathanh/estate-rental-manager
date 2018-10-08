@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import PropertyDetails from "../PropertyDetails/PropertyDetails";
 import GoogleMapsReact from "google-map-react";
 import Marker from "../Marker/Marker";
@@ -30,6 +30,14 @@ class PropertyPage extends Component {
     this.getSingleProperty();
   }
 
+  fileApplication = () => {
+    if (this.props.theUser) {
+      this.props.history.push(`/properties/lease/${this.state._id}`);
+    } else {
+      this.props.history.push("/login");
+    }
+  };
+
   render() {
     let center = {
       lat: this.state.lat,
@@ -37,15 +45,15 @@ class PropertyPage extends Component {
     };
 
     const style = {
-      width: "100%"
+      width: "80%"
     };
 
-    console.log("ppppppppppppppthis.state", this.state);
+    //console.log("ppppppppppppppthis.state", this.state);
 
     return (
       <div className="container" onClick={this.handelClick}>
         <h1>Property Page</h1>
-        <div className="row">
+        <div className="row m-4">
           <div className="col-12 col-sm-6 section-property">
             <img style={style} src={this.state.imageUrl} alt="Background" />
             <h2>{this.state.address}</h2>
@@ -66,10 +74,8 @@ class PropertyPage extends Component {
           </div>
           <div className="col-12 col-sm-6 section-property">
             <div className="m-4">
-              <button className="btn-info">
-                <Link to={`/properties/lease/${this.state._id}`}>
-                  File Application
-                </Link>
+              <button className="btn-info" onClick={this.fileApplication}>
+                File Application
               </button>
             </div>
           </div>

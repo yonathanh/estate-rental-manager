@@ -81,13 +81,19 @@ class Properties extends Component {
     this.setState({
       searchField: theEventObject.target.value,
       searchedProperties: tempProperties.filter(oneProperty =>
-        new RegExp(theEventObject.target.value, "i").exec(oneProperty.address)
+        new RegExp(theEventObject.target.value, "i").exec(
+          oneProperty.manager.name
+        )
       )
     });
   };
 
   togglePropertyForm = () => {
-    this.setState({ toggleAddProperty: !this.state.toggleAddProperty });
+    if (this.props.theUser) {
+      this.setState({ toggleAddProperty: !this.state.toggleAddProperty });
+    } else {
+      this.props.history.push("/login");
+    }
   };
 
   deleteProperty = propertyId => {
@@ -112,8 +118,8 @@ class Properties extends Component {
 
   render() {
     let center = {
-      lat: 25.7617,
-      lng: 80.1918
+      lat: 25.79224,
+      lng: -80.13485
     };
     if (this.state.selectedProperty) {
       center = {
@@ -129,7 +135,7 @@ class Properties extends Component {
             <input
               className="form-control mr-sm-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search Manger Name"
               aria-label="Search"
               value={this.state.searchField}
               onChange={this.handleSearch}

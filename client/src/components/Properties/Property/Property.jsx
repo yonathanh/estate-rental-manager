@@ -7,6 +7,11 @@ class Property extends Component {
     this.props.selectProperty(this.props.Property);
   };
   render() {
+    let manager = "John";
+    if (this.props.Property.manager) {
+      manager = this.props.Property.manager;
+    }
+    //console.log("managermanagermanagermanager", manager);
     const title = `${this.props.Property.address} For ${
       this.props.Property.price
     }$`;
@@ -18,7 +23,7 @@ class Property extends Component {
           src={this.props.Property.imageUrl}
           alt="Background"
         />
-
+        <div className="property-title bold">Manager: {manager.name}</div>
         <div className="property-title">{title}</div>
         <div className="btn-block">
           <button
