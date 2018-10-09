@@ -205,43 +205,43 @@ router.get(
   })
 );
 
-//-------- GOOGLE Log In function
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.google_client_id,
-      clientSecret: process.env.google_client_secret,
-      callbackURL: "/auth/google/callback"
-    },
-    (accessToken, refreshToken, profile, done) => {
-      //console.log("=-=-=-=-=-=-=-=-",profile.emails[0].value);  // to see all what google profile sends the web app
-      //console.log("-=-=-=-=-=-=-=-=-=",profile.photos[0].value)
-      User.findOne({ googleID: profile.id })
-        .then((user, err) => {
-          if (err) {
-            return done(err);
-          }
-          if (user) {
-            return done(null, user);
-          }
+// //-------- GOOGLE Log In function
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: process.env.google_client_id,
+//       clientSecret: process.env.google_client_secret,
+//       callbackURL: "/auth/google/callback"
+//     },
+//     (accessToken, refreshToken, profile, done) => {
+//       //console.log("=-=-=-=-=-=-=-=-",profile.emails[0].value);  // to see all what google profile sends the web app
+//       //console.log("-=-=-=-=-=-=-=-=-=",profile.photos[0].value)
+//       User.findOne({ googleID: profile.id })
+//         .then((user, err) => {
+//           if (err) {
+//             return done(err);
+//           }
+//           if (user) {
+//             return done(null, user);
+//           }
 
-          const newUser = new User({
-            username: profile.displayName,
-            imageUrl: profile.photos[0].value,
-            email: profile.emails[0].value,
-            googleID: profile.id
-          });
+//           const newUser = new User({
+//             username: profile.displayName,
+//             imageUrl: profile.photos[0].value,
+//             email: profile.emails[0].value,
+//             googleID: profile.id
+//           });
 
-          newUser.save().then(user => {
-            done(null, newUser);
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  )
-); //--------- End GOOGLE Log In function
+//           newUser.save().then(user => {
+//             done(null, newUser);
+//           });
+//         })
+//         .catch(error => {
+//           console.log(error);
+//         });
+//     }
+//   )
+// ); //--------- End GOOGLE Log In function
 
 // must use form in html for post!
 //================================================
