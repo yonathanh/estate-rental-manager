@@ -20,7 +20,7 @@ class AddLease extends Component {
 
     axios
       .post(
-        "http://localhost:5000/api/lease/" + this.props.theProperty._id,
+        `${process.env.BASE_URL}/lease/${this.props.theProperty._id}`,
         LeaseObject,
         {
           withCredentials: true

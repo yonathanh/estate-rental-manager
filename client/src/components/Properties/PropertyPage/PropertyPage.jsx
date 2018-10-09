@@ -15,7 +15,7 @@ class PropertyPage extends Component {
   getSingleProperty = () => {
     const { params } = this.props.match;
     axios
-      .get(`http://localhost:5000/api/properties/${params.id}`)
+      .get(`${process.env.BASE_URL}properties/${params.id}`)
       .then(responseFromApi => {
         // console.log("responseFromApi.data", responseFromApi.data);
         const theProperty = responseFromApi.data;

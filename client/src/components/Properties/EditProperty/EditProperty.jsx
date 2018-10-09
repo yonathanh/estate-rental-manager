@@ -14,7 +14,7 @@ class EditProperty extends Component {
   getSingleProperty = () => {
     const { params } = this.props.match;
     axios
-      .get(`http://localhost:5000/api/Properties/${params.id}`)
+      .get(`${process.env.BASE_URL}/Properties/${params.id}`)
       .then(responseFromApi => {
         const theProperty = responseFromApi.data;
         this.setState(theProperty);

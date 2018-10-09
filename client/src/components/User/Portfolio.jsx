@@ -52,7 +52,7 @@ class Portfolio extends Component {
     const tempProperties = [...this.state.listOfProperties];
     //  ========= I dont want to delete for now, uncomment when want to reactivate
     // axios
-    //   .delete(`http://localhost:5000/api/properties/${propertyId}`)
+    //   .delete(`${process.env.BASE_URL}/properties/${propertyId}`)
     //   .then(responseFromApi => {
     //     this.props.history.push("/portfolio");
     //   })
