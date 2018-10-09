@@ -14,6 +14,13 @@ body {
   background-size: cover; /* -> fix properties page?? */
   background-color: #5e8181;
 }
+
+label {
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 7px;
+  font-size: 0.9em;
+}
 /* 
 h1,
 h2 {

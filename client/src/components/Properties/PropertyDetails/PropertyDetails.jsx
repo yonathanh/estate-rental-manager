@@ -17,7 +17,7 @@ class PropertyDetails extends Component {
 
     return (
       <div>
-        <h3>Manager: {manager.name}</h3>
+        <label className="fieldlabel">Property: {manager.name}</label>
         <div id="customform" className="customform">
           <li>
             <div className="top-header" />

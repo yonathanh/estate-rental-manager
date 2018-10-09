@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PropertyDetails from "../../PropertyDetails/PropertyDetails";
+import ProfileDetails from "../../../Auth/ProfileDetails";
 
 import "./LeasePdf.css";
 
@@ -28,26 +30,51 @@ class LeasePdf extends Component {
   }
 
   render() {
+    let theProperty = {};
+    let theManager = {};
+    let theTenant = {};
+    if (this.state.property) {
+      theProperty = this.state.property;
+      theManager = this.state.manager;
+      theTenant = this.state.tenant;
+    }
+    console.log("this.state.property", theProperty);
     return (
       <div id="customform" className="customform">
-        <ul className="field-container">
-          <li>
-            <div className="top-header" />
-          </li>
-          <li>
-            <div className="form-header-group">
-              <div>
-                <h2 className="form-header">
-                  residential rental application form
-                </h2>
-              </div>
+        <li>
+          <div className="top-header" />
+        </li>
+        <li>
+          <div className="form-header-group">
+            <div>
+              <h2 className="form-header">
+                residential rental application form
+              </h2>
             </div>
-          </li>
+          </div>
+        </li>
+        <li className="formrow clear">
+          <div className="section-header">
+            <label className="fieldlabel">Property Fields</label>
+          </div>
+        </li>
+
+        <label>Property Oner</label>
+        <ProfileDetails theUser={theManager} />
+        <hr />
+        <PropertyDetails theProperty={theProperty} />
+
+        <label>Applicant Details</label>
+        <ProfileDetails theUser={theTenant} />
+
+        <ul className="field-container">
+          <hr />
           <li className="formrow clear">
             <div className="section-header">
-              <label className="fieldlabel">Property Fields</label>
+              <label className="fieldlabel">Lease Fields</label>
             </div>
           </li>
+          <hr />
           {/* <!-- Single Line Text Field --> */}
           <li className="formrow formcol col1">
             <label className="fieldlabel" htmlFor="Title">
@@ -143,20 +170,15 @@ class LeasePdf extends Component {
               </select>
             </div>
           </li>
-          <li className="formrow clear">
-            <div className="section-header">
-              <label className="fieldlabel">Lease Fields</label>
-            </div>
-          </li>
-          {/* <!-- Subject Field --> */}
+          {/* <!-- Address Field --> */}
           <li className="formrow col1">
-            <label className="fieldlabel" htmlFor="Subject">
-              Subject
+            <label className="fieldlabel" htmlFor="Address">
+              Address
             </label>
             <div className="clear">
               <input
                 type="text"
-                id="Subject"
+                id="Address"
                 className="field-textbox field-textbox-large"
               />
             </div>
@@ -334,30 +356,6 @@ class LeasePdf extends Component {
               <input type="number" id="Gross_Total" className="field-textbox" />
             </div>
           </li>
-          {/* <!-- File Upload Field --> */}
-          <li className="formrow col1">
-            <label className="fieldlabel" htmlFor="Upload_Documents">
-              Upload Documents <span>(File Upload)</span>
-            </label>
-            <div className="clear">
-              <input type="file" id="Upload_Documents" />
-            </div>
-          </li>
-          {/* <!-- File Download Field --> */}
-          {/* <!-- The input type filedownload in the html will be replaced by the eForm mapped file download field. --> */}
-          <li className="formrow col1">
-            <label className="fieldlabel" htmlFor="Download_Sample">
-              Download Sample <span>(File Download)</span>
-            </label>
-            <div className="clear">
-              <input
-                type="filedownload"
-                id="Download_Sample"
-                className="field-textbox field-textbox-large height100"
-                placeholder="placeholder for file download control"
-              />
-            </div>
-          </li>
           {/* <!-- Name Field --> */}
           <li className="formrow formcol col1">
             <label className="fieldlabel" htmlFor="Contact_Person">
@@ -413,6 +411,31 @@ class LeasePdf extends Component {
               </select>
             </div>
           </li>
+          {/* <!-- File Upload Field --> */}
+          <li className="formrow col1">
+            <label className="fieldlabel" htmlFor="Upload_Documents">
+              Upload Documents <span>(File Upload)</span>
+            </label>
+            <div className="clear">
+              <input type="file" id="Upload_Documents" />
+            </div>
+          </li>
+          {/* <!-- File Download Field --> */}
+          {/* <!-- The input type filedownload in the html will be replaced by the eForm mapped file download field. --> */}
+          <li className="formrow col1">
+            <label className="fieldlabel" htmlFor="Download_Sample">
+              Download Sample <span>(File Download)</span>
+            </label>
+            <div className="clear">
+              <input
+                type="filedownload"
+                id="Download_Sample"
+                className="field-textbox field-textbox-large height100"
+                placeholder="placeholder for file download control"
+              />
+            </div>
+          </li>
+
           {/* <!-- Multiple Choice Field --> */}
           <li className="formrow formcol col1">
             <label className="fieldlabel" htmlFor="Payment_Method">

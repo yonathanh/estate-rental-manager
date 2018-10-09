@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import axios from "axios";
 import Property from "../Properties/Property/Property";
 import AddProperty from "../Properties/AddProperty/AddProperty";
-import Profile from "../Auth/Profile";
+import ProfileEdit from "../Auth/ProfileEdit";
 
 import "./Portfolio.css";
 
@@ -114,7 +114,7 @@ class Portfolio extends Component {
               </div>
             )}
           </div>
-          <Profile
+          <ProfileEdit
             setTheUserInTheAppComponent={this.props.setTheUserInTheAppComponent}
             theUser={this.props.theUser}
           />

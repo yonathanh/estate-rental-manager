@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "./Auth-service";
 
-class Profile extends Component {
+class ProfileEdit extends Component {
   constructor(props) {
     super(props);
     if (this.props.theUser) {
@@ -159,4 +159,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default ProfileEdit;

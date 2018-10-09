@@ -160,7 +160,9 @@ class Properties extends Component {
             )}
           </div>
           <GoogleMapsReact
-            // bootstrapURLKeys={{ key: "AIzaSyCByLBJSe7XjwUosOuW8xah1Bn - rP23i2A" }}
+            bootstrapURLKeys={{
+              key: "AIzaSyDr1oh3VqAywl1koW4H1h6EKxVr-n9jIbU" //process.env.GOOGLE_MAPS_API_KEY ????
+            }}
             center={center}
             defaultZoom={12}
           >
