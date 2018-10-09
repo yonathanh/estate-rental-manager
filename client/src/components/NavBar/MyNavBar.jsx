@@ -94,7 +94,7 @@ class MyNavBar extends Component {
           </ul>
 
           {/* <!-- Login Dropdown --> */}
-          {!this.state.loggedInUser && (
+          {/* {!this.state.loggedInUser && (
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -143,7 +143,7 @@ class MyNavBar extends Component {
                 </div>
               </div>
             </li>
-          )}
+          )} */}
 
           {/* End Login Dropdown  */}
           {/* <form className="form-inline my-2 my-lg-0">

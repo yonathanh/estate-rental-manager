@@ -76,7 +76,7 @@ class Login extends Component {
                   >
                     Login
                   </button>
-                  <p>or</p>
+                  {/* <p>or</p>
                   Login via
                   <div className="social-buttons">
                     <a
@@ -85,7 +85,7 @@ class Login extends Component {
                     >
                       <i className="fa fa-google" /> Google
                     </a>
-                  </div>
+                  </div> */}
                 </form>
               </div>
               <p>
