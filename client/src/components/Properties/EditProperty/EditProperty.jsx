@@ -275,7 +275,7 @@ class EditProperty extends Component {
                     <input
                       name="lat"
                       className="form-control input"
-                      type="number"
+                      type="text"
                       onChange={e => this.handleChange(e)}
                       value={this.state.lat}
                       placeholder="40.7128"
@@ -291,7 +291,7 @@ class EditProperty extends Component {
                     <input
                       name="lng"
                       className="form-control input"
-                      type="number"
+                      type="text"
                       onChange={e => this.handleChange(e)}
                       value={this.state.lng}
                       placeholder="74.0060"
