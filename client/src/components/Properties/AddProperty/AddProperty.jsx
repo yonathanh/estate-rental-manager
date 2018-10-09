@@ -294,7 +294,7 @@ class AddProperty extends Component {
                 <input
                   name="latField"
                   className="form-control input"
-                  type="number"
+                  type="text"
                   onChange={e => this.fieldChange(e)}
                   value={this.state.latField}
                   placeholder="40.7128"
@@ -310,7 +310,7 @@ class AddProperty extends Component {
                 <input
                   name="lngField"
                   className="form-control input"
-                  type="number"
+                  type="text"
                   onChange={e => this.fieldChange(e)}
                   value={this.state.lngField}
                   placeholder="74.0060"
