@@ -18,7 +18,10 @@ class PropertyDetails extends Component {
     return (
       <div>
         <h3>Manager: {manager.name}</h3>
-        <div /*onSubmit={this.handleFormSubmit}*/>
+        <div id="customform" className="customform">
+          <li>
+            <div className="top-header" />
+          </li>
           <div className="form-row">
             <div className="form-group col-md-2">
               <label htmlFor="inputState">Type</label>
@@ -131,6 +134,9 @@ class PropertyDetails extends Component {
               </div>
             </div>
           </div>
+          <li>
+            <div className="top-header" />
+          </li>
         </div>
       </div>
     );

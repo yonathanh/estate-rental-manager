@@ -2,3 +2,7 @@
 label {
   margin-bottom: 0;
 }
+
+.col.col-md-10 {
+  max-width: 100%;
+}

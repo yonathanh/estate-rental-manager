@@ -33,10 +33,10 @@ class LeaseApplication extends Component {
     return (
       <div className="container-fluid h-100">
         <div className="row justify-content-center align-items-center h-100">
-          <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-5">
+          <div className="col col-xl-6">
             <PropertyDetails theProperty={this.state} />
           </div>
-          <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-5">
+          <div className="col col-xl-6">
             <AddLease {...this.props} theProperty={this.state} />
           </div>
         </div>

@@ -68,10 +68,13 @@ class EditProperty extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3" />
-          <div class="col-sm-6">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-3" />
+          <div id="customform" className="customform col-sm-6">
+            <li>
+              <div className="top-header" />
+            </li>
             <form onSubmit={this.handleFormSubmit}>
               <div className="form-row">
                 <div className="form-group col-md-2">
@@ -339,6 +342,9 @@ class EditProperty extends Component {
                 </p>
               </div>
             </form>
+            <li>
+              <div className="top-header" />
+            </li>
           </div>
           <div class="col-sm-3" />
         </div>
