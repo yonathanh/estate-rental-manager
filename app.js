@@ -52,7 +52,10 @@ app.locals.title = "estate-rental-manager";
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"]
+    origin: [
+      "http://localhost:3000",
+      "https://estate-rental-manager.herokuapp.com"
+    ]
   })
 );
 
