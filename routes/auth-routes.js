@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+//const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const uploadCloud = require("../config/cloudinary.js");
 const nodemailer = require("nodemailer");
 
@@ -186,24 +186,25 @@ router.get("/loggedin", (req, res, next) => {
       res.json(err);
     });
 });
-//-------- GOOGLE Log In routs
-router.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: [
-      "https://www.googleapis.com/auth/plus.login",
-      "https://www.googleapis.com/auth/plus.profile.emails.read"
-    ]
-  })
-);
 
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/",
-    successRedirect: "/"
-  })
-);
+// //-------- GOOGLE Log In routs
+// router.get(
+//   "/auth/google",
+//   passport.authenticate("google", {
+//     scope: [
+//       "https://www.googleapis.com/auth/plus.login",
+//       "https://www.googleapis.com/auth/plus.profile.emails.read"
+//     ]
+//   })
+// );
+
+// router.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     failureRedirect: "/",
+//     successRedirect: "/"
+//   })
+// );
 
 // //-------- GOOGLE Log In function
 // passport.use(
