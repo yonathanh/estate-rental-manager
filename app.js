@@ -143,8 +143,8 @@ const authRoutes = require("./routes/auth-routes");
 app.use("/api", authRoutes);
 
 //--------  Main rout
-const index = require("./routes/index-routes");
-app.use("/api", index);
+// const index = require("./routes/index-routes");
+// app.use("/api", index);
 
 //--------- user rout
 const user = require("./routes/user-routes");
