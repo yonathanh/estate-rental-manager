@@ -7,6 +7,7 @@ const uploadCloud = require("../config/cloudinary.js");
 
 const mongoose = require("mongoose");
 const Lease = require("../models/Lease");
+const User = require("../models/User");
 
 // GET route => to get all the Properties
 router.get("/leases", (req, res, next) => {
@@ -33,9 +34,10 @@ router.post(
   "/lease/:propertyID",
   uploadCloud.single("photo"),
   (req, res, next) => {
+    //console.log("req.body req.body req.body", req.body);
     Property.findById(req.params.propertyID)
       .then(propertyFromDB => {
-        console.log("propertyFromDB", propertyFromDB);
+        //console.log("propertyFromDB", propertyFromDB);
         const LeaseObject = {
           manager: propertyFromDB.manager,
           startDate: req.body.startDate,
@@ -51,22 +53,49 @@ router.post(
         }
         Lease.create(LeaseObject)
           .then(leaseFromDB => {
+            console.log("=-=-=-=-=-=-==-=-=-", propertyFromDB);
             res.json(leaseFromDB);
-            propertyFromDB.contractDetails
-              .push(leaseFromDB)
-              .propertyFromDB.save()
-              .then(() => {
-                res.json(leaseFromDB);
+            propertyFromDB.lease = leaseFromDB._id;
+            propertyFromDB
+              .save()
+              .then(property => {
+                console.log(
+                  "finishin first push baout to find the user",
+                  property
+                );
+                User.findByIdAndUpdate(req.user._id, {
+                  $push: { contracts: leaseFromDB._id }
+                })
+                  .then(x => {
+                    console.log("all of it done x", x);
+                  })
+                  .catch(err => {
+                    console.log("err1", err);
+                    res.status(400).json(err);
+                  });
+                User.findByIdAndUpdate(propertyFromDB.manager._id, {
+                  $push: { contracts: leaseFromDB._id }
+                })
+                  .then(y => {
+                    console.log("yyyyyyyyyyyyy", y);
+                  })
+                  .catch(err => {
+                    console.log("err", err);
+                    res.status(400).json(err);
+                  });
               })
               .catch(err => {
+                console.log("err2", err);
                 res.status(400).json(err);
               });
           })
           .catch(err => {
+            console.log("err3", err);
             res.json(err);
           });
       })
       .catch(err => {
+        console.log("err4", err);
         res.json(err);
       });
   }

@@ -2,16 +2,15 @@ import React, { Component } from "react";
 //import axios from "axios";
 import Property from "../Properties/Property/Property";
 import AddProperty from "../Properties/AddProperty/AddProperty";
-import ProfileEdit from "../Auth/ProfileEdit";
+import Marker from "../Properties/Marker/Marker";
 
-import "./Portfolio.css";
+import GoogleMapsReact from "google-map-react";
 
-class Portfolio extends Component {
+class MyProperties extends Component {
   constructor(props) {
     super(props);
     this.state = {
       listOfProperties: [],
-      searchedProperties: [],
       selectedProperty: null,
       toggleAddProperty: false
     };
@@ -23,7 +22,7 @@ class Portfolio extends Component {
 
   showProperties = () => {
     if (this.props.theUser) {
-      // console.log( "this.props.theUser.properties", this.props.theUser.properties);
+      // console.log("this.props.theUser.properties",this.props.theUser.properties );
       return this.props.theUser.properties.map((oneProperty, index) => {
         return (
           <Property
@@ -41,6 +40,20 @@ class Portfolio extends Component {
   selectProperty = Property => {
     this.setState({
       selectedProperty: Property
+    });
+  };
+
+  showMarkers = () => {
+    return this.state.listOfProperties.map((oneProperty, index) => {
+      return (
+        <Marker
+          key={index}
+          lat={oneProperty.lat}
+          lng={oneProperty.lng}
+          price={oneProperty.price}
+          selected={oneProperty === this.state.selectedProperty}
+        />
+      );
     });
   };
 
@@ -63,8 +76,7 @@ class Portfolio extends Component {
     tempProperties.splice(this.props, 1);
 
     this.setState({
-      listOfProperties: tempProperties,
-      searchedProperties: tempProperties
+      listOfProperties: tempProperties
     });
   };
 
@@ -72,16 +84,16 @@ class Portfolio extends Component {
     this.setState({});
   }
   render() {
-    // let center = {
-    //   lat: 25.7617,
-    //   lng: 80.1918
-    // };
-    // if (this.state.selectedProperty) {
-    //   center = {
-    //     lat: this.state.selectedProperty.lat,
-    //     lng: this.state.selectedProperty.lng
-    //   };
-    // }
+    let center = {
+      lat: 25.7617,
+      lng: 80.1918
+    };
+    if (this.state.selectedProperty) {
+      center = {
+        lat: this.state.selectedProperty.lat,
+        lng: this.state.selectedProperty.lng
+      };
+    }
 
     let theUser = "John";
     if (this.props.theUser) {
@@ -111,14 +123,19 @@ class Portfolio extends Component {
               </div>
             )}
           </div>
-          <ProfileEdit
-            setTheUserInTheAppComponent={this.props.setTheUserInTheAppComponent}
-            theUser={this.props.theUser}
-          />
+          <GoogleMapsReact
+            bootstrapURLKeys={{
+              key: "AIzaSyDr1oh3VqAywl1koW4H1h6EKxVr-n9jIbU" //process.env.GOOGLE_MAPS_API_KEY ????
+            }}
+            center={center}
+            defaultZoom={12}
+          >
+            {this.showMarkers()}
+          </GoogleMapsReact>
         </div>
       </div>
     );
   }
 }
 
-export default Portfolio;
+export default MyProperties;

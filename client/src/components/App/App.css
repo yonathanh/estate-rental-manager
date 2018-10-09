@@ -32,7 +32,11 @@ h2 {
   border-radius: 10px;
   animation: header 5s ease-in infinite alternate;
 } */
+h3 {
+  color: rgb(241, 144, 53);
 
+  font-size: 1em;
+}
 /* ======================= Header =================== */
 .App {
   text-align: center;

@@ -21,6 +21,11 @@ class MyNavBar extends Component {
     });
   };
   render() {
+    let lease = [];
+    if (this.state.loggedInUser) {
+      lease = this.state.loggedInUser.contracts[0];
+    }
+    // console.log("leaseleaselease", lease);
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
         <li className="nav-link navbar-brand">
@@ -41,18 +46,18 @@ class MyNavBar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-link navbar-brand">
+            {/* <li className="nav-link navbar-brand">
               <Link className="link" to="/manage">
                 Manage
               </Link>
-            </li>
-            <div className="nav-item">
+            </li> */}
+            {/* <div className="nav-item">
               <li className="nav-link navbar-brand">
                 <Link className="link" to="/projects">
                   Projects
                 </Link>
               </li>
-            </div>
+            </div> */}
             <div className="nav-item">
               <li className="nav-link navbar-brand">
                 <Link className="link" to="/properties">
@@ -73,12 +78,12 @@ class MyNavBar extends Component {
                 Portfolio
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/properties">
+                <a className="dropdown-item" href="/myProperties">
                   My Properties
                 </a>
-                <a className="dropdown-item" href="/lease">
+                <Link className="link dropdown-item" to={"/lease/" + lease}>
                   My Leases
-                </a>
+                </Link>
                 <div className="dropdown-divider" />
                 <a className="dropdown-item" href="/">
                   My Tenants
@@ -141,7 +146,7 @@ class MyNavBar extends Component {
           )}
 
           {/* End Login Dropdown  */}
-          <form className="form-inline my-2 my-lg-0">
+          {/* <form className="form-inline my-2 my-lg-0">
             <input
               className="form-control mr-sm-2"
               type="search"
@@ -151,7 +156,7 @@ class MyNavBar extends Component {
             <button className="btn btn-outline-info my-2 my-sm-0" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
           {!this.state.loggedInUser && (
             <div className="nav-item">
               <li className="nav-link navbar-brand">

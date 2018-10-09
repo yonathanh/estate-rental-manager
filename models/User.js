@@ -13,7 +13,7 @@ const userSchema = new Schema(
     imageUrl: String,
     imgName: String,
     imgPath: String,
-    contracts: Array,
+    contracts: [{ type: Schema.Types.ObjectId, ref: "Lease" }],
     properties: [{ type: Schema.Types.ObjectId, ref: "Property" }]
   },
   {

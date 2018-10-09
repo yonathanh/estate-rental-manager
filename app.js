@@ -155,4 +155,10 @@ app.use("/api", property);
 const lease = require("./routes/lease-routes");
 app.use("/api", lease);
 
+//---------------- React Rout
+app.use((req, res, next) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 module.exports = app;

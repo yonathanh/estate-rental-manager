@@ -6,6 +6,7 @@ import AuthService from "../Auth/Auth-service";
 import Signup from "../Auth/Signup";
 import Login from "../Auth/Login";
 import Portfolio from "../User/Portfolio";
+import MyProperties from "../User/MyProperties";
 import Projects from "../Projects/Projects";
 import Manage from "../Manage/Manage";
 import Properties from "../Properties/Properties";
@@ -90,6 +91,29 @@ class App extends Component {
               if (this.state.loggedInUser) {
                 return (
                   <Portfolio
+                    {...props}
+                    fetchUser={() => this.fetchUser}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                    theUser={this.state.loggedInUser}
+                  />
+                );
+              } else {
+                return (
+                  <Login
+                    {...props}
+                    setTheUserInTheAppComponent={this.getTheUser}
+                  />
+                );
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/myProperties"
+            render={props => {
+              if (this.state.loggedInUser) {
+                return (
+                  <MyProperties
                     {...props}
                     fetchUser={() => this.fetchUser}
                     setTheUserInTheAppComponent={this.getTheUser}
