@@ -54,7 +54,7 @@ class AddProperty extends Component {
     };
 
     axios
-      .post(`${process.env.BASE_URL}/properties`, propertyObject, {
+      .post(`${process.env.REACT_APP_BASE_URL}/properties`, propertyObject, {
         withCredentials: true
       })
       .then(() => {

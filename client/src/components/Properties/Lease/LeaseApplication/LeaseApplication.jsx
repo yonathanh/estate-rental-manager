@@ -13,7 +13,7 @@ class LeaseApplication extends Component {
   getSingleProperty = () => {
     const { params } = this.props.match;
     axios
-      .get(`${process.env.BASE_URL}/properties/${params.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/properties/${params.id}`)
       .then(responseFromApi => {
         //console.log("responseFromApi.data", responseFromApi.data);
         const theProperty = responseFromApi.data;

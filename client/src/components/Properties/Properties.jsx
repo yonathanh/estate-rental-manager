@@ -22,7 +22,7 @@ class Properties extends Component {
 
   getAllProperties = () => {
     axios
-      .get(process.env.BASE_URL + "/properties")
+      .get(process.env.REACT_APP_BASE_URL + "/properties")
       .then(responseFromApi => {
         this.setState({
           listOfProperties: responseFromApi.data,

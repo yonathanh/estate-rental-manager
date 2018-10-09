@@ -14,7 +14,7 @@ class LeasePdf extends Component {
   getSingleLease = () => {
     const { params } = this.props.match;
     axios
-      .get(`http://localhost:5000/api/lease/${params.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/lease/${params.id}`)
       .then(responseFromApi => {
         console.log("responseFromApi.data", responseFromApi.data); //Need To Display all this details and make pdf for print
         const theLease = responseFromApi.data;

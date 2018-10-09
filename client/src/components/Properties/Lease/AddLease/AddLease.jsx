@@ -20,7 +20,7 @@ class AddLease extends Component {
 
     axios
       .post(
-        `${process.env.BASE_URL}/lease/${this.props.theProperty._id}`,
+        `${process.env.REACT_APP_BASE_URL}/lease/${this.props.theProperty._id}`,
         LeaseObject,
         {
           withCredentials: true
