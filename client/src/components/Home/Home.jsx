@@ -22,11 +22,11 @@ class Home extends Component {
           />
           <div className="fb-profile-text">
             <div className="main-wrap">
-              {/* <img
+              <img
                 class="main-gif"
                 src="/imgs/walking-house-gif.gif"
                 alt="main-gif"
-              /> */}
+              />
               <h1 className="main-header">estate-rental-manager</h1>
             </div>
 

@@ -16,7 +16,7 @@ class LeasePdf extends Component {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/lease/${params.id}`)
       .then(responseFromApi => {
-        console.log("responseFromApi.data", responseFromApi.data); //Need To Display all this details and make pdf for print
+        // console.log("responseFromApi.data", responseFromApi.data); //Need To Display all this details and make pdf for print
         const theLease = responseFromApi.data;
         this.setState(theLease);
       })
@@ -29,6 +29,31 @@ class LeasePdf extends Component {
     this.getSingleLease();
   }
 
+  approvingStatus = () => {
+    if (this.state.manager._id === this.props.theUser._id) {
+      console.log(this.props.theUser._id);
+      const { params } = this.props.match;
+
+      axios
+        .put(
+          `${process.env.REACT_APP_BASE_URL}/lease/${params.id}`,
+          { status: "Approved" },
+          {
+            withCredentials: true
+          }
+        )
+        .then(leaseFromDB => {
+          this.getSingleLease();
+          console.log("leaseFromDB", leaseFromDB.data.leaseFromDB.status);
+          //this.props.history.push(`/lease/${leaseFromDB.data._id}`);
+        })
+        .catch(error => console.log(error));
+    } else {
+      console.log("this.state.manager._id", this.state.manager._id);
+      console.log("this.props.theUser._id", this.props.theUser._id);
+    }
+  };
+
   render() {
     let theProperty = {};
     let theManager = {};
@@ -38,7 +63,8 @@ class LeasePdf extends Component {
       theManager = this.state.manager;
       theTenant = this.state.tenant;
     }
-    console.log("this.state.property", theProperty);
+    //console.log(this.props.theUser);
+    // console.log("this.state.property", theProperty);
     return (
       <div id="customform" className="customform">
         <li>
@@ -78,10 +104,7 @@ class LeasePdf extends Component {
             <div className="field col-md-6">
               <div className="control has-icons-left">
                 <label className="my-sm-0">Start Date</label>
-                <div className="form-control input">
-                  {" "}
-                  {this.state.startDate}
-                </div>
+                <div className="form-control input">{this.state.startDate}</div>
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock" />
                 </span>
@@ -103,6 +126,12 @@ class LeasePdf extends Component {
               <div className="input form-control">
                 <h3>{this.state.status}</h3>
               </div>
+
+              {theManager._id === this.props.theUser._id && (
+                <button onClick={this.approvingStatus} className="btn-info">
+                  Approve
+                </button>
+              )}
             </div>
           </div>
           <hr />

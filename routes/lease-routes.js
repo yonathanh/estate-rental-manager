@@ -134,9 +134,10 @@ router.put("/lease/:id", (req, res, next) => {
   }
 
   Lease.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
+    .then(leaseFromDB => {
       res.json({
-        message: `Lease with ${req.params.id} is updated successfully.`
+        leaseFromDB
+        //message: `Lease with ${req.params.id} is updated successfully.`
       });
     })
     .catch(err => {

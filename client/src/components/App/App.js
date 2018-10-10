@@ -184,7 +184,9 @@ class App extends Component {
             path="/lease/:id"
             render={props => {
               if (this.state.loggedInUser) {
-                return <LeasePdf {...props} />;
+                return (
+                  <LeasePdf theUser={this.state.loggedInUser} {...props} />
+                );
               } else {
                 return (
                   <Login

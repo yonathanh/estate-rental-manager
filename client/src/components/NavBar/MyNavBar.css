@@ -1,7 +1,16 @@
 /* ======================= Global=================== */
 
 nav {
-  background-color: rgba(58, 34, 45, 0.9);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(76, 0, 76),
+    rgba(76, 0, 76, 0.7),
+    rgba(76, 0, 76, 0.4)
+  );
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 5px 15px black;
 }
 
 li {

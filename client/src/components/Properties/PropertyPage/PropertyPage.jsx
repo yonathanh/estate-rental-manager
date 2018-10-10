@@ -44,10 +44,6 @@ class PropertyPage extends Component {
       lng: this.state.lng
     };
 
-    const style = {
-      width: "2vm"
-    };
-
     //console.log("ppppppppppppppthis.state", this.state);
 
     return (
