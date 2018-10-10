@@ -8,6 +8,10 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  border-radius: 10px;
+  -webkit-box-shadow: 11px 12px 9px -9px rgba(59, 12, 59, 1);
+  -moz-box-shadow: 11px 12px 9px -9px rgba(59, 12, 59, 1);
+  box-shadow: 11px 12px 9px -9px rgba(59, 12, 59, 1);
 }
 
 @media (max-width: 990px) {

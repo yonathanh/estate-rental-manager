@@ -45,7 +45,7 @@ class ProfileEdit extends Component {
 
   render() {
     return (
-      <div>
+      <div className="profileEdit">
         {/* <!-- Profile  --> */}
         <form onSubmit={this.handleFormSubmit} />
         <h1>Edit Profile</h1> <span className="caret" />
