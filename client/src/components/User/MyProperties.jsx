@@ -27,7 +27,8 @@ class MyProperties extends Component {
         return (
           <Property
             key={index}
-            Property={oneProperty}
+            property={oneProperty}
+            propertyForEdit={oneProperty}
             selectProperty={this.selectProperty}
             deleteClickHandler={this.deleteProperty}
             detailsClickHandler={this.PropertyDetails}
@@ -101,7 +102,7 @@ class MyProperties extends Component {
     }
 
     return (
-      <div className="app">
+      <div className="myProperties">
         <div className="main">
           <h1>Welcome: {theUser.name}</h1>
           <h2>List of your properties</h2>

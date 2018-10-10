@@ -3,11 +3,11 @@
 nav {
   background-image: linear-gradient(
     to bottom,
-    rgb(76, 0, 76),
-    rgba(76, 0, 76, 0.7),
-    rgba(76, 0, 76, 0.4)
+    rgb(46, 13, 46),
+    rgba(107, 25, 63, 0.8),
+    rgba(76, 0, 76, 0.6)
   );
-  border-radius: 10px;
+  border-radius: 30px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: 0 5px 15px black;

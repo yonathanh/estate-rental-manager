@@ -31,7 +31,7 @@ class LeasePdf extends Component {
 
   approvingStatus = () => {
     if (this.state.manager._id === this.props.theUser._id) {
-      console.log(this.props.theUser._id);
+      // console.log(this.props.theUser._id);
       const { params } = this.props.match;
 
       axios
@@ -44,7 +44,7 @@ class LeasePdf extends Component {
         )
         .then(leaseFromDB => {
           this.getSingleLease();
-          console.log("leaseFromDB", leaseFromDB.data.leaseFromDB.status);
+          //  console.log("leaseFromDB", leaseFromDB.data.leaseFromDB.status);
           //this.props.history.push(`/lease/${leaseFromDB.data._id}`);
         })
         .catch(error => console.log(error));
@@ -121,14 +121,18 @@ class LeasePdf extends Component {
             </div>
           </div>
           <div>
-            <div className="form-group col-md-3">
-              <label>status</label>
-              <div className="input form-control">
-                <h3>{this.state.status}</h3>
+            <div className="wrapper col-8 ml-5">
+              <div className="form-group col-12">
+                <label>status</label>
+                <div className="input form-control">
+                  <h3>{this.state.status}</h3>
+                </div>
               </div>
-
               {theManager._id === this.props.theUser._id && (
-                <button onClick={this.approvingStatus} className="btn-info">
+                <button
+                  onClick={this.approvingStatus}
+                  className="btn-info mt-3"
+                >
                   Approve
                 </button>
               )}

@@ -69,36 +69,6 @@ class PropertyPage extends Component {
           </GoogleMapsReact>
         </div>
       </div>
-      // <div className="container" onClick={this.handelClick}>
-      //   <h1>Property Page</h1>
-      //   <div className="row m-4">
-      //     <div className="col-12 col-sm-6 section-property">
-      //       <img style={style} src={this.state.imageUrl} alt="Background" />
-      //       <h2>{this.state.address}</h2>
-      //     </div>
-      //     <div className="col-12 col-sm-6 section-property">
-      //       <GoogleMapsReact
-      //         // bootstrapURLKeys={{ key: "AIzaSyCByLBJSe7XjwUosOuW8xah1Bn - rP23i2A" }}
-      //         center={center}
-      //         defaultZoom={12}
-      //       >
-      //         <Marker price={this.state.price} />
-      //       </GoogleMapsReact>
-      //     </div>
-      //   </div>
-      //   <div className="row">
-      //     <div className="col-12 col-sm-6 section-property">
-      //       <PropertyDetails theProperty={this.state} />
-      //     </div>
-      //     <div className="col-12 col-sm-6 section-property">
-      //       <div className="m-4">
-      //         <button className="btn-info" onClick={this.fileApplication}>
-      //           File Application
-      //         </button>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }

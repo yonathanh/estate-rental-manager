@@ -47,7 +47,8 @@ class Properties extends Component {
       return (
         <Property
           key={index}
-          Property={oneProperty}
+          property={oneProperty}
+          propertyForEdit=""
           selectProperty={this.selectProperty}
           deleteClickHandler={this.deleteProperty}
           detailsClickHandler={this.PropertyDetails}

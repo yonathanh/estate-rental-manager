@@ -28,7 +28,8 @@ class Portfolio extends Component {
         return (
           <Property
             key={index}
-            Property={oneProperty}
+            property={oneProperty}
+            propertyForEdit={oneProperty}
             selectProperty={this.selectProperty}
             deleteClickHandler={this.deleteProperty}
             detailsClickHandler={this.PropertyDetails}

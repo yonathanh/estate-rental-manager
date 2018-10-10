@@ -9,10 +9,11 @@ html {
 }
 
 body {
-  background-image: url(/imgs/minimalism-tree.jpg);
+  background-image: url(/imgs/glass.jpeg);
   background-repeat: no-repeat;
   background-size: cover; /* -> fix properties page?? */
-  background-color: #5e8181;
+  background-color: #627987;
+  /* height: 100vh; */
 }
 
 label {
@@ -33,7 +34,8 @@ h2 {
   animation: header 5s ease-in infinite alternate;
 } */
 h3 {
-  color: rgb(241, 144, 53);
+  color: rgb(225, 248, 17);
+  text-shadow: 0 0 2px black;
 
   font-size: 1em;
 }
@@ -73,4 +75,35 @@ h3 {
   -webkit-box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
   -moz-box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
   box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
+}
+
+/* ======================= LeasePdf =================== */
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ======================= myProperties =================== */
+
+.myProperties {
+  display: flex;
+
+  background-image: url(/imgs/leefs.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover; /* -> fix properties page?? */
+}
+
+.Properties .property-poster {
+  z-index: 100;
+}
+
+/* ======================= home =================== */
+.home {
+  background-image: url(/imgs/glass.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover; /* -> fix properties page?? */
+  background-color: #627987;
+  height: 100vh;
 }

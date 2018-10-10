@@ -4,23 +4,31 @@ import "./Property.css";
 
 class Property extends Component {
   handelClick = () => {
-    this.props.selectProperty(this.props.Property);
+    this.props.selectProperty(this.props.property);
   };
   render() {
     let manager = "John";
-    if (this.props.Property.manager) {
-      manager = this.props.Property.manager;
+    if (this.props.property.manager) {
+      manager = this.props.property.manager;
     }
     //console.log("managermanagermanagermanager", manager);
-    const title = `${this.props.Property.address} For ${
-      this.props.Property.price
+    const title = `${this.props.property.address} For ${
+      this.props.property.price
     }$`;
+
+    // logic for not anabeling edit button unless in your own properties
+    let editLink = "";
+    if (this.props.propertyForEdit._id) {
+      editLink = `/properties/edit/${this.props.propertyForEdit._id}`;
+    } else {
+      editLink = `/myProperties`;
+    }
 
     return (
       <div className="property" onClick={this.handelClick}>
         <img
           className="property-poster"
-          src={this.props.Property.imageUrl}
+          src={this.props.property.imageUrl}
           alt="Background"
         />
         <div className="property-title bold">Manager: {manager.name}</div>
@@ -29,21 +37,21 @@ class Property extends Component {
           <button
             style={{ backgroundColor: "red", margin: "0 5px" }}
             onClick={() =>
-              this.props.deleteClickHandler(this.props.Property._id)
+              this.props.deleteClickHandler(this.props.property._id)
             }
           >
             Delete
           </button>
           <button className="btn-info">
-            <Link to={`/properties/${this.props.Property._id}`}>Details</Link>
+            <Link to={`/properties/${this.props.property._id}`}>Details</Link>
           </button>
           <button
             style={{ backgroundColor: "orange", margin: "0 5px" }}
             onClick={() =>
-              this.props.deleteClickHandler(this.props.Property._id)
+              this.props.deleteClickHandler(this.props.property._id)
             }
           >
-            <Link to={`/properties/edit/${this.props.Property._id}`}>Edit</Link>
+            <Link to={editLink}>Edit</Link>
           </button>
         </div>
       </div>
