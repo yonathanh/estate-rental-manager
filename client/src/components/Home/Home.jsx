@@ -24,7 +24,7 @@ class Home extends Component {
             <div className="fb-profile-text">
               <div className="main-wrap">
                 <img
-                  class="main-gif"
+                  className="main-gif"
                   src="/imgs/walking-house-gif.gif"
                   alt="main-gif"
                 />

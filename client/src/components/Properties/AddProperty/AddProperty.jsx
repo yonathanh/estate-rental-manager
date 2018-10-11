@@ -32,29 +32,50 @@ class AddProperty extends Component {
     // console.log("============== this.state ===", this.state);
     event.preventDefault();
 
-    const propertyObject = {
-      type: this.state.typeField,
-      beds: this.state.bedsField,
-      baths: this.state.bathsField,
-      squareFeet: this.state.squareFeetField,
-      price: this.state.priceField,
-      address: this.state.addressField,
-      city: this.state.cityField,
-      state: this.state.stateField,
-      zip: this.state.zipField,
-      pets: this.state.petsField,
-      smoking: this.state.smokingField,
-      parking: this.state.parkingField,
-      downPayment: this.state.downPaymentField,
-      fees: this.state.feesField,
-      lat: this.state.latField,
-      lng: this.state.lngField,
-      imageUrl: this.state.imageUrlField,
-      imgPath: this.state.imgPath
-    };
+    const formData = new FormData();
+    formData.append("photo", this.state.imageFileField);
+    formData.append("type", this.state.typeField);
+    formData.append("beds", this.state.bedsField);
+    formData.append("baths", this.state.bathsField);
+    formData.append("squareFeet", this.state.squareFeetField);
+    formData.append("price", this.state.priceField);
+    formData.append("address", this.state.addressField);
+    formData.append("city", this.state.cityField);
+    formData.append("state", this.state.stateField);
+    formData.append("zip", this.state.zipField);
+    formData.append("pets", this.state.petsField);
+    formData.append("smoking", this.state.smokingField);
+    formData.append("parking", this.state.parkingField);
+    formData.append("downPayment", this.state.downPaymentField);
+    formData.append("fees", this.state.feesField);
+    formData.append("lat", this.state.latField);
+    formData.append("lng", this.state.lngField);
+    formData.append("imageUrl", this.state.imageUrlField);
+
+    console.log("DEBUG formData", formData.get("photo"));
+
+    // const propertyObject = {
+    //   type: this.state.typeField,
+    //   beds: this.state.bedsField,
+    //   baths: this.state.bathsField,
+    //   squareFeet: this.state.squareFeetField,
+    //   price: this.state.priceField,
+    //   address: this.state.addressField,
+    //   city: this.state.cityField,
+    //   state: this.state.stateField,
+    //   zip: this.state.zipField,
+    //   pets: this.state.petsField,
+    //   smoking: this.state.smokingField,
+    //   parking: this.state.parkingField,
+    //   downPayment: this.state.downPaymentField,
+    //   fees: this.state.feesField,
+    //   lat: this.state.latField,
+    //   lng: this.state.lngField,
+    //   imageUrl: this.state.imageUrlField
+    // };
 
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}/properties`, propertyObject, {
+      .post(`${process.env.REACT_APP_BASE_URL}/properties`, formData, {
         withCredentials: true
       })
       .then(() => {
@@ -85,7 +106,15 @@ class AddProperty extends Component {
   };
 
   fieldChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    switch (event.target.name) {
+      case "imageFileField":
+        console.log("handleChange");
+        console.log("DEBUG e.target.files[0]", event.target.files[0]);
+        this.setState({ imageFileField: event.target.files[0] });
+        break;
+      default:
+        this.setState({ [event.target.name]: event.target.value });
+    }
   };
 
   render() {
@@ -269,7 +298,6 @@ class AddProperty extends Component {
                 className="form-control input"
                 type="file"
                 onChange={e => this.fieldChange(e)}
-                value={this.state.imageFileField}
                 placeholder="Image file"
               />
               <span className="icon is-small is-left">

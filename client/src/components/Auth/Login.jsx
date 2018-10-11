@@ -40,7 +40,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home">
         {/* <!-- Login  --> */}
         <form onSubmit={this.handleFormSubmit} />
         {this.state.theUser && <h1>hello {this.state.theUser}</h1>}

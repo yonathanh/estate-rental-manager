@@ -28,7 +28,11 @@ class Property extends Component {
       <div className="property" onClick={this.handelClick}>
         <img
           className="property-poster"
-          src={this.props.property.imageUrl}
+          src={
+            this.props.property.imgPath
+              ? this.props.property.imgPath
+              : this.props.property.imageUrl
+          }
           alt="Background"
         />
         <div className="property-title bold">Manager: {manager.name}</div>

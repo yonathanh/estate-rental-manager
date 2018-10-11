@@ -56,7 +56,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home">
         {/* <!-- Singup  --> */}
         <form onSubmit={this.handleFormSubmit} />
         <h1>Sign Up</h1> <span className="caret" />
@@ -143,7 +143,7 @@ class Signup extends Component {
                     onChange={e => this.handleChange(e)}
                     placeholder="imageUrl"
                   />
-                  <label className="my-sm-0" htmlFor="imgPath">
+                  {/* <label className="my-sm-0" htmlFor="imgPath">
                     imgPath
                   </label>
                   <input
@@ -153,7 +153,7 @@ class Signup extends Component {
                     value={this.state.imgPath}
                     onChange={e => this.handleChange(e)}
                     placeholder="imgPath"
-                  />
+                  /> */}
                   <button
                     type="submit"
                     value="Signup"

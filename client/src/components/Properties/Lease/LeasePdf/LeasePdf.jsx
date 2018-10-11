@@ -211,7 +211,13 @@ class LeasePdf extends Component {
               />
             </div>
           </li>
+          {/* ==== */}
           <li className="formrow"> </li>
+
+          <button className="mx-4">
+            <a href="javascript:genPDF()">Download PDF</a>
+          </button>
+
           <button className="btn btn-info my-2">Submit</button>
           <li>
             <div className="top-header clear" />
