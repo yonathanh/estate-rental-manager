@@ -44,7 +44,7 @@ class Login extends Component {
         {/* <!-- Login  --> */}
         <form onSubmit={this.handleFormSubmit} />
         {this.state.theUser && <h1>hello {this.state.theUser}</h1>}
-        <h1>Login</h1> <span className="caret" />
+        <h1 className="m-4">Login</h1> <span className="caret" />
         <div className="row">
           <div className="col-md-4" />
           <div className="col-md-4">

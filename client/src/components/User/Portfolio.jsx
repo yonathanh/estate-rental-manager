@@ -92,7 +92,7 @@ class Portfolio extends Component {
     return (
       <div className="app">
         <div className="main">
-          <h1>Welcome: {theUser.name}</h1>
+          <h1 className="m-4">Welcome: {theUser.name}</h1>
           <h2>List of your properties</h2>
           <button onClick={this.togglePropertyForm}>Add New</button>
           <div className="Properties">{this.showProperties()}</div>
@@ -112,10 +112,14 @@ class Portfolio extends Component {
               </div>
             )}
           </div>
-          <ProfileEdit
-            setTheUserInTheAppComponent={this.props.setTheUserInTheAppComponent}
-            theUser={this.props.theUser}
-          />
+          <div className="m-4">
+            <ProfileEdit
+              setTheUserInTheAppComponent={
+                this.props.setTheUserInTheAppComponent
+              }
+              theUser={this.props.theUser}
+            />
+          </div>
         </div>
       </div>
     );

@@ -105,7 +105,7 @@ class MyProperties extends Component {
     return (
       <div className="myProperties">
         <div className="main">
-          <h1>Welcome: {theUser.name}</h1>
+          <h1 className="m-4">Welcome: {theUser.name}</h1>
           <h2>List of your properties</h2>
           <button onClick={this.togglePropertyForm}>Add New</button>
           <div className="Properties">{this.showProperties()}</div>

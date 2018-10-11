@@ -12,6 +12,10 @@
   width: 50vw;
   top: 0;
   position: sticky;
+
+  -webkit-box-shadow: -2px 5px 8px 2px rgba(10, 9, 10, 1);
+  -moz-box-shadow: -2px 5px 8px 2px rgba(10, 9, 10, 1);
+  box-shadow: -2px 5px 8px 2px rgba(10, 9, 10, 1);
 }
 
 .Properties {

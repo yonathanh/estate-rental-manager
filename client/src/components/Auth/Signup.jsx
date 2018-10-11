@@ -59,7 +59,7 @@ class Signup extends Component {
       <div className="home">
         {/* <!-- Singup  --> */}
         <form onSubmit={this.handleFormSubmit} />
-        <h1>Sign Up</h1> <span className="caret" />
+        <h1 className="m-4">Sign Up</h1> <span className="caret" />
         <div className="row">
           <div className="col-md-4" />
           <div className="col-md-4">

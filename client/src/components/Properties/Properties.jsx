@@ -160,15 +160,18 @@ class Properties extends Component {
               </div>
             )}
           </div>
-          <GoogleMapsReact
-            bootstrapURLKeys={{
-              key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-            }}
-            center={center}
-            defaultZoom={12}
-          >
-            {this.showMarkers()}
-          </GoogleMapsReact>
+
+          <div className="map">
+            <GoogleMapsReact
+              bootstrapURLKeys={{
+                key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+              }}
+              center={center}
+              defaultZoom={12}
+            >
+              {this.showMarkers()}
+            </GoogleMapsReact>
+          </div>
         </div>
       </div>
     );
