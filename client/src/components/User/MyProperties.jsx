@@ -18,6 +18,7 @@ class MyProperties extends Component {
 
   toggleAddProperty = () => {
     this.setState({ toggleAddProperty: !this.state.toggleAddProperty });
+    this.showProperties();
   };
 
   showProperties = () => {
@@ -87,8 +88,8 @@ class MyProperties extends Component {
   }
   render() {
     let center = {
-      lat: 40.712776,
-      lng: -74.005974
+      lat: 25.820133,
+      lng: -80.120816
     };
     if (this.state.selectedProperty) {
       center = {
