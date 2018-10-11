@@ -50,7 +50,11 @@ class PropertyPage extends Component {
       <div className="app">
         <div className="main">
           <h1>Property Page</h1>
-          <img className="poster" src={this.state.imageUrl} alt="Background" />
+          <img
+            className="poster"
+            src={this.state.imgPath ? this.state.imgPath : this.state.imageUrl}
+            alt="Background"
+          />
           <p>{this.state.address}</p>
           <button className="btn-danger bouncy" onClick={this.fileApplication}>
             File Application

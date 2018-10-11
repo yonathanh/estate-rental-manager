@@ -60,7 +60,7 @@ router.post("/properties", uploadCloud.single("photo"), (req, res, next) => {
     PropertyObject.lat = req.body.lat;
   }
   if (req.body.lng) {
-    PropertyObject.lat = req.body.lng;
+    PropertyObject.lng = req.body.lng;
   }
   if (req.user) {
     PropertyObject.manager = req.user._id;

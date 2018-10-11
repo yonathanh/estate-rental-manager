@@ -10,7 +10,7 @@ class MyProperties extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listOfProperties: [],
+      listOfProperties: this.props.theUser.properties,
       selectedProperty: null,
       toggleAddProperty: false
     };
@@ -45,6 +45,7 @@ class MyProperties extends Component {
   };
 
   showMarkers = () => {
+    console.log("this.state.listOfProperties", this.state.listOfProperties);
     return this.state.listOfProperties.map((oneProperty, index) => {
       return (
         <Marker
@@ -76,13 +77,13 @@ class MyProperties extends Component {
 
     tempProperties.splice(this.props, 1);
 
-    this.setState({
-      listOfProperties: tempProperties
-    });
+    this.setState({});
   };
 
   componentWillReceiveProps() {
-    this.setState({});
+    this.setState({
+      listOfProperties: this.props.theUser.properties
+    });
   }
   render() {
     let center = {
