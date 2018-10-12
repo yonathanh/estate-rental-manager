@@ -66,9 +66,11 @@ class Signature extends Component {
       onEnd(e) {}
     });
 
-    this.setState({ signInput: widget }, () =>
-      console.log("singiture state=-=-=-===-=-=-=-=-=-", this.state)
-    );
+    this.setState({ signInput: widget });
+
+    //   , () =>
+    //   console.log("singiture state=-=-=-===-=-=-=-=-=-", this.state)
+    // );
 
     window.addEventListener("resize", this.resizeCanvas);
   }

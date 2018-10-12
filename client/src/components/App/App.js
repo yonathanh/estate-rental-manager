@@ -131,8 +131,6 @@ class App extends Component {
             }}
           />
           <Route exact path="/" component={Home} />
-          <Route path="/projects" component={Projects} />
-          <Route path="/manage" component={Manage} />
           <Route
             exact
             path="/properties"

@@ -57,10 +57,12 @@ class LeasePdf extends Component {
       // console.log(this.props.theUser._id);
       const { params } = this.props.match;
 
+      // console.log("status", this.state.status);
+
       axios
         .put(
           `${process.env.REACT_APP_BASE_URL}/lease/${params.id}`,
-          { status: "Approved" },
+          { status: !this.state.status },
           {
             withCredentials: true
           }
@@ -89,9 +91,11 @@ class LeasePdf extends Component {
 
     let status = this.state.status;
     let classStatus = "pending";
-    if (this.state.status === "Approved") {
+    if (this.state.status) {
       classStatus = "approved";
-      status = this.state.status;
+      status = "Approved";
+    } else {
+      status = "Pending";
     }
 
     //console.log(this.props.theUser);

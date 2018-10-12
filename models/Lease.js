@@ -12,7 +12,7 @@ const leaseSchema = new Schema(
     property: { type: Schema.Types.ObjectId, ref: "Property" },
     paymentMethod: Object,
     signature: String,
-    status: { type: String, default: "pending" }
+    status: { type: Boolean, default: false }
   },
   {
     timestamps: {
