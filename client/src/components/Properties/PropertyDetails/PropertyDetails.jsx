@@ -17,10 +17,10 @@ class PropertyDetails extends Component {
 
     return (
       <div>
-        <label className="fieldlabel">Property: {manager.name}</label>
-        <div id="customform" className="customform">
+        <div id="customform" className="property-details">
           <li>
             <div className="top-header" />
+            <label className="fieldlabel">Property: {manager.name}</label>
           </li>
           <div className="form-row">
             <div className="form-group col-md-2">

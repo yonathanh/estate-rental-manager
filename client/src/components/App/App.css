@@ -33,12 +33,7 @@ h2 {
   border-radius: 10px;
   animation: header 5s ease-in infinite alternate;
 } */
-h3 {
-  color: rgb(225, 248, 17);
-  text-shadow: 0 0 2px black;
 
-  font-size: 1em;
-}
 /* ======================= Header =================== */
 .App {
   text-align: center;
@@ -77,12 +72,19 @@ h3 {
   box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
 }
 
-/* ======================= LeasePdf =================== */
+/* ======================= addLease =================== */
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.addLease {
+  background-color: rgba(150, 195, 193, 0.84);
+  border: 1px solid transparent;
+  margin: 0px auto;
+  padding-top: 10px;
+  margin-top: 100px;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
+  -moz-box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
+  box-shadow: 4px 9px 29px 10px rgba(92, 40, 92, 1);
 }
 
 /* ======================= myProperties =================== */
@@ -108,4 +110,74 @@ h3 {
   height: 100vh;
 }
 
-/* ======================= google Maps =================== */
+/* ======================= LeasePdf =================== */
+
+.approved {
+  color: rgb(225, 248, 17);
+  text-shadow: 0 0 2px black;
+
+  font-size: 1em;
+}
+
+.pending {
+  color: rgb(248, 44, 17);
+  text-shadow: 0 0 2px black;
+
+  font-size: 1em;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container.signature-container {
+  width: 100% !important;
+}
+
+.can-wrapper {
+  margin: 0 auto;
+}
+
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#customform.customform {
+  /* max-height: 100vh !important;
+  overflow: hidden; */
+  font-size: 0.8rem;
+}
+
+#customform > .form-control {
+  padding: 0 !important;
+}
+
+/* ======================= PropertyDetails=================== */
+.property-details {
+  background-color: #fff;
+  border: 1px solid transparent;
+  margin: 0px auto;
+  padding: 7px;
+  width: 60vw;
+}
+
+/* ======================= AddProperty=================== */
+.add-property {
+  background-color: #fff;
+  border: 1px solid transparent;
+  margin: 0px auto;
+  padding-top: 0px;
+  width: 100%;
+}

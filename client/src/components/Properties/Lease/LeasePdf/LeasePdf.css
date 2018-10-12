@@ -23,7 +23,7 @@ body {
 .customform {
   margin: 0px auto;
   padding-top: 0px;
-  width: 590px;
+  width: 60vw;
 }
 
 .field-container {
@@ -69,8 +69,8 @@ body {
 .form-header-group {
   background: transparent;
   border: none;
-  padding: 24px 0;
-  margin: 12px 36px 18px;
+  padding: 5px 0;
+  margin: 5px 36px 0px;
   border-bottom: 1px solid #e3e3e3;
 }
 
@@ -103,7 +103,7 @@ select {
   display: block;
   white-space: normal;
   font-weight: bold;
-  margin-bottom: 7px;
+  margin-bottom: 4px;
   /* float: left; */
 }
 .fieldlabel span {
@@ -153,6 +153,3 @@ select {
 label {
   display: inline;
 }
-
-
-

@@ -119,7 +119,7 @@ class AddProperty extends Component {
 
   render() {
     return (
-      <div id="customform" className="customform">
+      <div id="customform" className="add-property">
         <li>
           <div className="top-header" />
         </li>

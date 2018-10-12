@@ -45,7 +45,7 @@ class AddLease extends Component {
   render() {
     //console.log("this.props.history", this.props);
     return (
-      <div>
+      <div className="addLease">
         <form onSubmit={this.handleFormSubmit}>
           <h1>Residential Rental Lease</h1>
 
@@ -83,24 +83,6 @@ class AddLease extends Component {
               </p>
             </div>
           </div>
-
-          <div className="field">
-            <p className="control has-icons-left">
-              <label className="my-sm-0">Image file</label>
-              <input
-                name="imageFileField"
-                className="form-control input"
-                type="file"
-                onChange={e => this.fieldChange(e)}
-                value={this.state.imageFileField}
-                placeholder="Image file"
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-lock" />
-              </span>
-            </p>
-          </div>
-
           <div className="form-group">
             <button className="btn btn-info">Next</button>
           </div>

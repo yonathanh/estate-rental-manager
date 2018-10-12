@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import PropertyDetails from "../../PropertyDetails/PropertyDetails";
 import ProfileDetails from "../../../Auth/ProfileDetails";
+import Signature from "./Signature";
 
 import "./LeasePdf.css";
 
@@ -27,7 +28,29 @@ class LeasePdf extends Component {
 
   componentDidMount() {
     this.getSingleLease();
+
+    // const script = document.createElement("script");
+    // script.src = "./jspdf.min.js";
+    // script.async = true;
+    // document.body.appendChild(script);
   }
+
+  //=========== the function is in index.html
+  //  genPDF = () => {
+  //     var doc = new jsPDF();
+
+  //     html2canvas(document.body)
+  //       .then((canvas) => {
+  //         var imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+  //         doc.addImage(imgData, 'JPEG', -70, -70)
+
+  //         doc.save('leaseCopy.pdf');
+
+  //         // document.body.appendChild(canvas)
+  //       })
+
+  //   }
 
   approvingStatus = () => {
     if (this.state.manager._id === this.props.theUser._id) {
@@ -63,6 +86,14 @@ class LeasePdf extends Component {
       theManager = this.state.manager;
       theTenant = this.state.tenant;
     }
+
+    let status = this.state.status;
+    let classStatus = "pending";
+    if (this.state.status === "Approved") {
+      classStatus = "approved";
+      status = this.state.status;
+    }
+
     //console.log(this.props.theUser);
     // console.log("this.state.property", theProperty);
     return (
@@ -87,14 +118,14 @@ class LeasePdf extends Component {
 
         <label>Property Oner</label>
         <ProfileDetails theUser={theManager} />
-        <hr />
+        {/* <hr /> */}
         <PropertyDetails theProperty={theProperty} />
 
         <label>Applicant Details</label>
         <ProfileDetails theUser={theTenant} />
 
         <ul className="field-container">
-          <hr />
+          {/* <hr /> */}
           <li className="formrow clear">
             <div className="section-header">
               <label className="fieldlabel">Lease Fields</label>
@@ -123,9 +154,9 @@ class LeasePdf extends Component {
           <div>
             <div className="wrapper col-8 ml-5">
               <div className="form-group col-12">
-                <label>status</label>
+                <label className="fieldlabel">Status</label>
                 <div className="input form-control">
-                  <h3>{this.state.status}</h3>
+                  <div className={classStatus}>{status}</div>
                 </div>
               </div>
               {theManager._id === this.props.theUser._id && (
@@ -139,32 +170,6 @@ class LeasePdf extends Component {
             </div>
           </div>
           <hr />
-
-          {/* <!-- File Upload Field --> */}
-          <li className="formrow col1">
-            <label className="fieldlabel" htmlFor="Upload_Documents">
-              Upload Documents <span>(File Upload)</span>
-            </label>
-            <div className="clear">
-              <input type="file" id="Upload_Documents" />
-            </div>
-          </li>
-          {/* <!-- File Download Field --> */}
-          {/* <!-- The input type filedownload in the html will be replaced by the eForm mapped file download field. --> */}
-          <li className="formrow col1">
-            <label className="fieldlabel" htmlFor="Download_Sample">
-              Download Sample <span>(File Download)</span>
-            </label>
-            <div className="clear">
-              <input
-                type="filedownload"
-                id="Download_Sample"
-                className="field-textbox field-textbox-large height100"
-                placeholder="placeholder for file download control"
-              />
-            </div>
-          </li>
-
           {/* <!-- Multiple Choice Field --> */}
           <li className="formrow formcol col1">
             <label className="fieldlabel" htmlFor="Payment_Method">
@@ -202,8 +207,8 @@ class LeasePdf extends Component {
             <label className="fieldlabel" htmlFor="Sign_Here">
               Sign Here <span>(Signature)</span>
             </label>
-            <div className="clear">
-              <input
+            <div className="clear col-6">
+              <div
                 type="signature"
                 id="Sign_Here"
                 className="field-textbox height100"
@@ -212,13 +217,24 @@ class LeasePdf extends Component {
             </div>
           </li>
           {/* ==== */}
+
           <li className="formrow"> </li>
+
+          <div id="Sign_Here" />
 
           <button className="mx-4">
             <a href="javascript:genPDF()">Download PDF</a>
           </button>
 
           <button className="btn btn-info my-2">Submit</button>
+
+          <div className="sign-wrapper">
+            <div className="col-7">
+              <div className="pending">Electronic signiture</div>
+              <Signature />
+            </div>
+          </div>
+
           <li>
             <div className="top-header clear" />
           </li>

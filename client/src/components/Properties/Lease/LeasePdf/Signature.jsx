@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import SignaturePad from "react-signature-pad-wrapper";
+import SignaturePad from "signature_pad";
 
 import "./Signature.css";
 
@@ -15,14 +15,14 @@ class Signature extends Component {
         revoke: false
       }
     };
+    this.ref = React.createRef();
   }
   bindSignature(e) {
     if (this.state.signInput.isEmpty()) return false;
     let image = this.state.signInput.toDataURL(),
-      container = document.getElementById(this.props.targetEl),
+      container = document.getElementById("Sign_Here"),
       img = document.createElement("img"),
       onClick = e => {
-        debugger;
         container.removeChild(e.target);
       };
 
@@ -32,21 +32,19 @@ class Signature extends Component {
       ? container.removeChild(container.children[0])
       : null;
     container.appendChild(img);
-    debugger;
     img.removeEventListener("dblclick", onClick);
     img.addEventListener("dblclick", onClick);
     this.setState({ buttons: { revoke: true, clear: true, sign: true } });
   }
 
-  resizeCanvas(e) {
-    let canvas = React.FindDOMNode(this.refs.signingSurface),
-      ratio = Math.max(window.devicePixelRatio || 1, 1);
-    canvas.width = canvas.offsetWidth * ratio;
-    canvas.height = canvas.offsetHeight * ratio;
-    canvas.getContext("2d").scale(ratio, ratio);
-  }
+  // resizeCanvas(e) {
+  //   let canvas = this.ref.current;
+  //   ratio = Math.max(window.devicePixelRatio || 1, 1);
+  //   canvas.width = canvas.offsetWidth * ratio;
+  //   canvas.height = canvas.offsetHeight * ratio;
+  //   canvas.getContext("2d").scale(ratio, ratio);
+  // }
   clearSignature(e) {
-    debugger;
     this.state.signInput.clear();
     this.setState({ buttons: { sign: true, clear: true, revoke: false } });
   }
@@ -55,41 +53,44 @@ class Signature extends Component {
   }
 
   componentDidMount() {
-    // let canvas = document.getElementById(this.props.srcElement),
-    let widget = new SignaturePad({
-      minWidth: 0.2,
-      maxWidth: 3,
+    const that = this;
+    let canvas = this.ref.current;
+    let widget = new SignaturePad(canvas, {
+      minWidth: 1,
+      maxWidth: 1,
       onBegin(e) {
-        this.setState({
+        that.setState({
           buttons: { sign: true, clear: true, revoke: false }
         });
       },
       onEnd(e) {}
     });
-    this.setState({ signInput: widget });
-    // window.addEventListener("resize", this.resizeCanvas);
-    debugger;
+
+    this.setState({ signInput: widget }, () =>
+      console.log("singiture state=-=-=-===-=-=-=-=-=-", this.state)
+    );
+
+    window.addEventListener("resize", this.resizeCanvas);
   }
   render() {
     return (
       <div className="container signature-container">
-        <div class="row">
-          <div class="col-md-12">
+        <div className="row">
+          <div className="col-md-12">
             <h1> {this.props.title}</h1>
           </div>
-          <div class="col-md-12">
-            <canvas
-              ref="signingSurface"
-              className="signature-input"
-              id={this.props.srcElement}
-            />
+          <div className="col-6 can-wrapper">
+            <canvas ref={this.ref} className="signature-input" />
           </div>
         </div>
-        <div class="row" ref="btnWrapper">
-          <div class="col-sm-6">
+
+        {/* <div id="Sign_Here" /> */}
+
+        <div className="row" ref="btnWrapper" className="btn-wrapper">
+          <div className="col-sm-6">
             <div
               ref="btnSign"
-              className="btn btn-success pull-left"
+              className="btn  btn-outline-dark"
               onClick={this.bindSignature.bind(this)}
             >
               Sign
@@ -97,7 +98,7 @@ class Signature extends Component {
             &nbsp;
             <div
               ref="btnClear"
-              className="btn btn-warning pull-right"
+              className="btn btn-outline-danger"
               onClick={this.clearSignature.bind(this)}
             >
               Clear
@@ -110,6 +111,3 @@ class Signature extends Component {
 }
 
 export default Signature;
-
-// React.render(<Application  srcElement="signature-input" targetEl="sign-location" title="Example Signature Widget"/>,
-//              document.getElementById('sign-widget'));

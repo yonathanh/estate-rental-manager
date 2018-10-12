@@ -31,12 +31,12 @@ class LeaseApplication extends Component {
   render() {
     //console.log("this.state", this.state);
     return (
-      <div className="container-fluid h-100">
-        <div className="row justify-content-center align-items-center h-100">
-          <div className="col col-xl-6">
-            <PropertyDetails theProperty={this.state} />
-          </div>
-          <div className="col col-xl-6">
+      <div className="app">
+        <div className="main">
+          <PropertyDetails theProperty={this.state} />
+        </div>
+        <div className="map">
+          <div className="m-4">
             <AddLease {...this.props} theProperty={this.state} />
           </div>
         </div>
