@@ -54,7 +54,8 @@ app.use(
     credentials: true,
     origin: [
       "http://localhost:3000",
-      "https://estate-rental-manager.herokuapp.com"
+      "https://estate-rental-manager.herokuapp.com",
+      "http://estate-rental-manager.herokuapp.com"
     ]
   })
 );
